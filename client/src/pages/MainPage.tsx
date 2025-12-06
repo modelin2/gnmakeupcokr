@@ -6,7 +6,6 @@ import {
   ExternalLink, 
   MapPin, 
   Clock, 
-  Users, 
   Star,
   Sparkles,
   Eye,
@@ -15,7 +14,6 @@ import {
   Gift,
   Palette,
   Timer,
-  Award,
   Briefcase
 } from "lucide-react";
 import {
@@ -26,7 +24,6 @@ import {
 } from "@/components/ui/accordion";
 
 import logoImage from "@assets/logo_gnmakeup_1765022120173.png";
-import heroImage1 from "@assets/지엔메이크업1_1765022120173.png";
 import heroImage2 from "@assets/지엔메이크업2_1765022120174.png";
 
 export default function MainPage() {
@@ -77,30 +74,21 @@ export default function MainPage() {
         </div>
       </header>
 
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src={heroImage1} 
-            alt="GN Makeup" 
-            className="w-full h-full object-cover object-top"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-        </div>
-        
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden bg-gradient-to-b from-muted/50 to-background">
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span className="text-white text-sm font-medium">네이버 평점 4.81 / 5.0</span>
-            <span className="text-white/60 text-xs">(176명 리뷰)</span>
+            <span className="text-foreground text-sm font-medium">네이버 평점 4.81 / 5.0</span>
+            <span className="text-muted-foreground text-xs">(176명 리뷰)</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight text-white drop-shadow-lg" data-testid="text-hero-title">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight text-foreground" data-testid="text-hero-title">
             화알못도 <span className="font-semibold">금손</span>이 되는 시간
           </h2>
-          <p className="text-lg md:text-xl text-white/90 mb-4 font-light" data-testid="text-hero-description">
+          <p className="text-lg md:text-xl text-foreground/90 mb-4 font-light" data-testid="text-hero-description">
             1:1 메이크업 원데이 클래스
           </p>
-          <p className="text-base text-white/70 mb-10 max-w-xl mx-auto">
+          <p className="text-base text-muted-foreground mb-10 max-w-xl mx-auto">
             유튜브 뷰티 영상을 봐도 내 얼굴엔 안 어울리나요?<br />
             나만의 얼굴 골격과 피부 톤에 맞춘 맞춤형 레슨을 경험하세요.
           </p>
@@ -117,15 +105,18 @@ export default function MainPage() {
             </a>
           </div>
           
-          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-white mb-12">
-            <Gift className="w-4 h-4" />
-            <span>지금 수강 신청 시 파우치 점검 무료!</span>
+          <div className="inline-flex flex-col items-center gap-2 bg-primary/10 px-6 py-3 rounded-lg text-sm mb-12">
+            <div className="flex items-center gap-2">
+              <Gift className="w-4 h-4 text-primary" />
+              <span className="font-medium text-foreground">선착순 5분께 브러쉬 세트 증정!</span>
+            </div>
+            <span className="text-xs text-muted-foreground">네이버 예약에서 일반 메이크업으로 예약 후 비고에 "레슨"이라고 적어주세요</span>
           </div>
 
           <div className="block">
             <button 
               onClick={() => scrollToSection('intro')}
-              className="animate-bounce text-white/60"
+              className="animate-bounce text-muted-foreground"
               aria-label="스크롤"
             >
               <ChevronDown className="w-6 h-6" />
@@ -197,21 +188,9 @@ export default function MainPage() {
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
                 176명으로부터 4.81 평점을 받은 유일한 메이크업샵.
-                수천 명의 수강생이 신뢰한 GN Makeup에서 나만의 메이크업 스타일을 찾아보세요.
+                GN Makeup에서 나만의 메이크업 스타일을 찾아보세요.
               </p>
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Award className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-sm">국가공인 메이크업 자격증 보유</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Users className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-sm">2,800명 이상의 수강생 배출</span>
-                </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                     <Briefcase className="w-4 h-4 text-primary" />
