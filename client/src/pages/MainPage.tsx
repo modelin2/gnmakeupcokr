@@ -10,12 +10,13 @@ import {
   Star,
   Sparkles,
   Eye,
-  Briefcase,
   ChevronDown,
   HelpCircle,
   Gift,
   Palette,
-  Timer
+  Timer,
+  Award,
+  Briefcase
 } from "lucide-react";
 import {
   Accordion,
@@ -23,6 +24,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+
+import logoImage from "@assets/logo_gnmakeup_1765022120173.png";
+import heroImage1 from "@assets/지엔메이크업1_1765022120173.png";
+import heroImage2 from "@assets/지엔메이크업2_1765022120174.png";
 
 export default function MainPage() {
   const scrollToSection = (id: string) => {
@@ -32,10 +37,15 @@ export default function MainPage() {
   return (
     <div className="min-h-screen bg-background">
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4 flex-wrap">
-          <h1 className="text-xl font-light tracking-wide" data-testid="text-logo">
-            <span className="font-medium">GN</span> Makeup
-          </h1>
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-4 flex-wrap">
+          <Link href="/" data-testid="link-home">
+            <img 
+              src={logoImage} 
+              alt="GN Makeup by Kimmina" 
+              className="h-10 md:h-12 object-contain invert dark:invert-0"
+              data-testid="img-logo"
+            />
+          </Link>
           <nav className="flex items-center gap-2 flex-wrap">
             <a
               href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
@@ -67,24 +77,30 @@ export default function MainPage() {
         </div>
       </header>
 
-      <section className="relative min-h-[85vh] flex items-center justify-center pt-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-amber-50/30 to-stone-50 dark:from-rose-950/20 dark:via-amber-950/10 dark:to-stone-950" />
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-rose-200/40 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-200/30 rounded-full blur-3xl" />
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src={heroImage1} 
+            alt="GN Makeup" 
+            className="w-full h-full object-cover object-top"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-6" data-testid="text-subtitle">
-            1:1 Personal Makeup Lesson
-          </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight" data-testid="text-hero-title">
-            화알못도 <span className="font-medium">금손</span>이 되는 시간
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full mb-6">
+            <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            <span className="text-white text-sm font-medium">네이버 평점 4.81 / 5.0</span>
+            <span className="text-white/60 text-xs">(176명 리뷰)</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight text-white drop-shadow-lg" data-testid="text-hero-title">
+            화알못도 <span className="font-semibold">금손</span>이 되는 시간
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground mb-4 font-light" data-testid="text-hero-description">
+          <p className="text-lg md:text-xl text-white/90 mb-4 font-light" data-testid="text-hero-description">
             1:1 메이크업 원데이 클래스
           </p>
-          <p className="text-base text-muted-foreground/80 mb-10 max-w-xl mx-auto">
+          <p className="text-base text-white/70 mb-10 max-w-xl mx-auto">
             유튜브 뷰티 영상을 봐도 내 얼굴엔 안 어울리나요?<br />
             나만의 얼굴 골격과 피부 톤에 맞춘 맞춤형 레슨을 경험하세요.
           </p>
@@ -101,18 +117,20 @@ export default function MainPage() {
             </a>
           </div>
           
-          <div className="flex items-center justify-center gap-2 text-sm text-primary mb-12">
+          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-white mb-12">
             <Gift className="w-4 h-4" />
             <span>지금 수강 신청 시 파우치 점검 무료!</span>
           </div>
 
-          <button 
-            onClick={() => scrollToSection('intro')}
-            className="animate-bounce text-muted-foreground/60"
-            aria-label="스크롤"
-          >
-            <ChevronDown className="w-6 h-6" />
-          </button>
+          <div className="block">
+            <button 
+              onClick={() => scrollToSection('intro')}
+              className="animate-bounce text-white/60"
+              aria-label="스크롤"
+            >
+              <ChevronDown className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </section>
 
@@ -137,28 +155,85 @@ export default function MainPage() {
       <section id="stats" className="py-16 border-y bg-card/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            <div className="text-center" data-testid="stat-students">
-              <Users className="w-8 h-8 mx-auto mb-3 text-primary/70" />
-              <p className="text-3xl md:text-4xl font-light mb-1">2,800+</p>
-              <p className="text-sm text-muted-foreground uppercase tracking-wide">수강생</p>
+            <div className="text-center" data-testid="stat-rating">
+              <div className="flex items-center justify-center gap-1 mb-3">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <p className="text-3xl md:text-4xl font-light mb-1">4.81</p>
+              <p className="text-sm text-muted-foreground">176명 평점</p>
+            </div>
+            <div className="hidden md:block w-px h-16 bg-border" />
+            <div className="text-center" data-testid="stat-interview">
+              <Briefcase className="w-8 h-8 mx-auto mb-3 text-primary/70" />
+              <p className="text-3xl md:text-4xl font-light mb-1">150+</p>
+              <p className="text-sm text-muted-foreground">면접 성공 사례</p>
             </div>
             <div className="hidden md:block w-px h-16 bg-border" />
             <div className="text-center" data-testid="stat-location">
               <MapPin className="w-8 h-8 mx-auto mb-3 text-primary/70" />
               <p className="text-3xl md:text-4xl font-light mb-1">3분</p>
-              <p className="text-sm text-muted-foreground uppercase tracking-wide">강남역 거리</p>
+              <p className="text-sm text-muted-foreground">강남역 거리</p>
             </div>
             <div className="hidden md:block w-px h-16 bg-border" />
             <div className="text-center" data-testid="stat-personal">
               <Sparkles className="w-8 h-8 mx-auto mb-3 text-primary/70" />
               <p className="text-3xl md:text-4xl font-light mb-1">1:1</p>
-              <p className="text-sm text-muted-foreground uppercase tracking-wide">맞춤 수업</p>
+              <p className="text-sm text-muted-foreground">맞춤 수업</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="curriculum" className="py-20 md:py-28 px-4">
+      <section className="py-20 md:py-28 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="order-2 lg:order-1">
+              <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Why Choose Us</p>
+              <h3 className="text-3xl md:text-4xl font-light mb-6">
+                20년 경력의<br />
+                <span className="font-medium">프로 메이크업 아티스트</span>
+              </h3>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                176명으로부터 4.81 평점을 받은 유일한 메이크업샵.
+                수천 명의 수강생이 신뢰한 GN Makeup에서 나만의 메이크업 스타일을 찾아보세요.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Award className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-sm">국가공인 메이크업 자격증 보유</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Users className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-sm">2,800명 이상의 수강생 배출</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Briefcase className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="text-sm">150건 이상의 면접 메이크업 성공 사례</span>
+                </div>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="relative rounded-lg overflow-hidden shadow-xl">
+                <img 
+                  src={heroImage2} 
+                  alt="150+ Interview Success Stories" 
+                  className="w-full h-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="curriculum" className="py-20 md:py-28 px-4 bg-muted/30">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Curriculum</p>
@@ -222,13 +297,22 @@ export default function MainPage() {
         </div>
       </section>
 
-      <section id="reviews" className="py-20 md:py-28 px-4 bg-muted/30">
+      <section id="reviews" className="py-20 md:py-28 px-4">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Reviews</p>
             <h3 className="text-3xl md:text-4xl font-light" data-testid="text-reviews-title">
               수강생 <span className="font-medium">리얼 후기</span>
             </h3>
+            <div className="flex items-center justify-center gap-2 mt-4">
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="text-lg font-medium">4.81</span>
+              <span className="text-muted-foreground text-sm">(176명)</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -272,7 +356,7 @@ export default function MainPage() {
               rel="noopener noreferrer"
             >
               <Button variant="outline" size="lg" data-testid="button-more-reviews">
-                더 많은 후기 보기
+                네이버에서 176개 후기 더보기
                 <ExternalLink className="w-4 h-4 ml-2" />
               </Button>
             </a>
@@ -280,7 +364,7 @@ export default function MainPage() {
         </div>
       </section>
 
-      <section id="faq" className="py-20 md:py-28 px-4">
+      <section id="faq" className="py-20 md:py-28 px-4 bg-muted/30">
         <div className="container mx-auto max-w-3xl">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">FAQ</p>
@@ -357,7 +441,7 @@ export default function MainPage() {
         </div>
       </section>
 
-      <section id="location" className="py-20 md:py-28 px-4 bg-muted/30">
+      <section id="location" className="py-20 md:py-28 px-4">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Location</p>
@@ -445,15 +529,28 @@ export default function MainPage() {
 
       <footer className="py-12 px-4 border-t bg-card/50">
         <div className="container mx-auto max-w-5xl">
+          <div className="flex justify-center mb-8">
+            <img 
+              src={logoImage} 
+              alt="GN Makeup by Kimmina" 
+              className="h-12 object-contain invert dark:invert-0"
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-medium mb-3">GN Makeup</h4>
               <p className="text-sm text-muted-foreground">
                 화알못도 금손이 되는<br />
                 1:1 맞춤 메이크업 클래스
               </p>
+              <div className="flex items-center gap-1 mt-2 justify-center md:justify-start">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
+                ))}
+                <span className="text-xs text-muted-foreground ml-1">4.81 (176)</span>
+              </div>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-medium mb-3">커리큘럼</h4>
               <ul className="text-sm text-muted-foreground space-y-2">
                 <li>파우치 점검 (내 화장품 활용)</li>
@@ -461,14 +558,14 @@ export default function MainPage() {
                 <li>10분 퀵 메이크업 (출근 화장)</li>
               </ul>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-medium mb-3">연락처</h4>
               <div className="space-y-2">
                 <a
                   href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground flex items-center gap-2"
+                  className="text-sm text-muted-foreground flex items-center gap-2 justify-center md:justify-start"
                 >
                   <ExternalLink className="w-4 h-4" />
                   네이버 예약
@@ -481,7 +578,7 @@ export default function MainPage() {
           </div>
           <div className="pt-8 border-t text-center">
             <p className="text-sm text-muted-foreground" data-testid="text-footer">
-              © 2025 GN Makeup. All rights reserved.
+              © 2025 GN Makeup by Kimmina. All rights reserved.
             </p>
           </div>
         </div>
