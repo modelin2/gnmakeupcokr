@@ -9,12 +9,20 @@ import {
   Users, 
   Star,
   Sparkles,
-  GraduationCap,
-  Palette,
-  Award,
+  Eye,
   Briefcase,
-  ChevronDown
+  ChevronDown,
+  HelpCircle,
+  Gift,
+  Palette,
+  Timer
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export default function MainPage() {
   const scrollToSection = (id: string) => {
@@ -71,45 +79,58 @@ export default function MainPage() {
             1:1 Personal Makeup Lesson
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight" data-testid="text-hero-title">
-            메이크업을 배우는
-            <br />
-            <span className="font-medium">특별한 시간</span>
+            화알못도 <span className="font-medium">금손</span>이 되는 시간
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground mb-4 font-light" data-testid="text-hero-description">
-            한층 더 자신있게 나를 표현할 수 있는 시간
+            1:1 메이크업 원데이 클래스
           </p>
-          <p className="text-base text-muted-foreground/80 mb-10">
-            2,800명 이상의 수강생이 선택한 1:1 맞춤 메이크업 클래스
+          <p className="text-base text-muted-foreground/80 mb-10 max-w-xl mx-auto">
+            유튜브 뷰티 영상을 봐도 내 얼굴엔 안 어울리나요?<br />
+            나만의 얼굴 골격과 피부 톤에 맞춘 맞춤형 레슨을 경험하세요.
           </p>
           
-          <div className="flex items-center justify-center gap-4 flex-wrap mb-16">
+          <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
             <a
               href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
               target="_blank"
               rel="noopener noreferrer"
             >
               <Button size="lg" className="px-8" data-testid="button-hero-booking">
-                상담 신청하기
+                1:1 레슨 상담 및 예약하기
               </Button>
             </a>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="px-8"
-              onClick={() => scrollToSection('reviews')}
-              data-testid="button-hero-reviews"
-            >
-              수강후기 보기
-            </Button>
+          </div>
+          
+          <div className="flex items-center justify-center gap-2 text-sm text-primary mb-12">
+            <Gift className="w-4 h-4" />
+            <span>지금 수강 신청 시 파우치 점검 무료!</span>
           </div>
 
           <button 
-            onClick={() => scrollToSection('stats')}
+            onClick={() => scrollToSection('intro')}
             className="animate-bounce text-muted-foreground/60"
             aria-label="스크롤"
           >
             <ChevronDown className="w-6 h-6" />
           </button>
+        </div>
+      </section>
+
+      <section id="intro" className="py-20 md:py-28 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h3 className="text-2xl md:text-3xl font-light mb-6" data-testid="text-intro-title">
+            "유튜브 뷰티 영상을 봐도<br />
+            <span className="font-medium">내 얼굴엔 안 어울리나요?</span>"
+          </h3>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            매일 아침, 어색한 눈썹과 둥둥 뜨는 파운데이션 때문에 고민이신가요?<br />
+            <span className="font-medium text-foreground">초보자 메이크업 레슨 전문 GN Makeup</span>에서는 
+            남들의 화장법이 아닌, 오직 당신만의 얼굴 골격과 피부 톤에 맞춘 솔루션을 제공합니다.
+          </p>
+          <p className="text-muted-foreground">
+            획일적인 학원식 강의가 아닌,<br />
+            <span className="text-foreground font-medium">실생활에서 바로 적용 가능한 데일리 메이크업 코칭</span>을 경험해보세요.
+          </p>
         </div>
       </section>
 
@@ -137,176 +158,93 @@ export default function MainPage() {
         </div>
       </section>
 
-      <section id="programs" className="py-20 md:py-28 px-4">
-        <div className="container mx-auto max-w-6xl">
+      <section id="curriculum" className="py-20 md:py-28 px-4">
+        <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
-            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Programs</p>
-            <h3 className="text-3xl md:text-4xl font-light" data-testid="text-programs-title">
-              나에게 맞는 <span className="font-medium">프로그램</span>
+            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Curriculum</p>
+            <h3 className="text-3xl md:text-4xl font-light" data-testid="text-curriculum-title">
+              곰손도 할 수 있는 <span className="font-medium">커리큘럼</span>
             </h3>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="group transition-all duration-300 hover:-translate-y-1" data-testid="card-program-1">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 mb-6 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
-                  <Palette className="w-7 h-7 text-rose-500" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="relative overflow-hidden" data-testid="card-curriculum-1">
+              <div className="absolute top-0 left-0 w-1 h-full bg-rose-400" />
+              <CardContent className="p-8 pl-10">
+                <div className="w-12 h-12 mb-6 rounded-full bg-rose-100 dark:bg-rose-900/30 flex items-center justify-center">
+                  <Palette className="w-6 h-6 text-rose-500" />
                 </div>
-                <h4 className="text-xl font-medium mb-3">셀프 메이크업</h4>
+                <h4 className="text-xl font-medium mb-3">내 파우치 심폐소생술</h4>
+                <p className="text-sm text-muted-foreground mb-4">(파우치 점검)</p>
                 <p className="text-muted-foreground leading-relaxed">
-                  나에게 어울리는 메이크업을 직접 할 수 있도록 기초부터 차근차근 배우는 클래스
+                  새로운 화장품을 살 필요가 없습니다. 여러분이 가지고 있는 제품을 활용해 최적의 조합을 찾아드립니다.
+                </p>
+                <p className="text-sm text-primary mt-4 font-medium">
+                  화알못 화장법의 시작은 내가 가진 도구를 제대로 쓰는 것!
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="group transition-all duration-300 hover:-translate-y-1" data-testid="card-program-2">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 mb-6 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                  <Sparkles className="w-7 h-7 text-amber-500" />
+            <Card className="relative overflow-hidden" data-testid="card-curriculum-2">
+              <div className="absolute top-0 left-0 w-1 h-full bg-violet-400" />
+              <CardContent className="p-8 pl-10">
+                <div className="w-12 h-12 mb-6 rounded-full bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center">
+                  <Eye className="w-6 h-6 text-violet-500" />
                 </div>
-                <h4 className="text-xl font-medium mb-3">취미반</h4>
+                <h4 className="text-xl font-medium mb-3">곰손도 할 수 있는 아이 메이크업</h4>
+                <p className="text-sm text-muted-foreground mb-4">(눈화장 공식)</p>
                 <p className="text-muted-foreground leading-relaxed">
-                  메이크업을 취미로 즐기고 싶은 분들을 위한 편안하고 즐거운 클래스
+                  번지고 지워지는 눈화장은 이제 그만. 무쌍, 속쌍, 유쌍 눈화장 배우기 과정을 통해 내 눈매를 가장 또렷하게!
+                </p>
+                <p className="text-sm text-primary mt-4 font-medium">
+                  어려운 그라데이션도 손쉽게 하는 노하우 전수
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="group transition-all duration-300 hover:-translate-y-1" data-testid="card-program-3">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 mb-6 rounded-full bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center">
-                  <Award className="w-7 h-7 text-violet-500" />
+            <Card className="relative overflow-hidden" data-testid="card-curriculum-3">
+              <div className="absolute top-0 left-0 w-1 h-full bg-amber-400" />
+              <CardContent className="p-8 pl-10">
+                <div className="w-12 h-12 mb-6 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                  <Timer className="w-6 h-6 text-amber-500" />
                 </div>
-                <h4 className="text-xl font-medium mb-3">자격증반</h4>
+                <h4 className="text-xl font-medium mb-3">직장인을 위한 10분 퀵 메이크업</h4>
+                <p className="text-sm text-muted-foreground mb-4">(출근 화장)</p>
                 <p className="text-muted-foreground leading-relaxed">
-                  메이크업 국가자격증 취득을 목표로 체계적으로 준비하는 전문 클래스
+                  바쁜 아침, 시간은 줄이고 완성도는 높이는 직장인 출근 화장 스킬을 배웁니다.
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="group transition-all duration-300 hover:-translate-y-1" data-testid="card-program-4">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 mb-6 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center">
-                  <GraduationCap className="w-7 h-7 text-sky-500" />
-                </div>
-                <h4 className="text-xl font-medium mb-3">대학입시반</h4>
-                <p className="text-muted-foreground leading-relaxed">
-                  뷰티학과 입시를 준비하는 학생들을 위한 맞춤형 실기 준비 클래스
+                <p className="text-sm text-primary mt-4 font-medium">
+                  베이스 지속력 UP + 생기있는 최소 터치
                 </p>
-              </CardContent>
-            </Card>
-
-            <Card className="group transition-all duration-300 hover:-translate-y-1" data-testid="card-program-5">
-              <CardContent className="p-8">
-                <div className="w-14 h-14 mb-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                  <Briefcase className="w-7 h-7 text-emerald-500" />
-                </div>
-                <h4 className="text-xl font-medium mb-3">전문가반</h4>
-                <p className="text-muted-foreground leading-relaxed">
-                  메이크업 아티스트로 활동하고자 하는 분들을 위한 심화 과정 클래스
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="group transition-all duration-300 hover:-translate-y-1 bg-primary/5 border-primary/20" data-testid="card-program-cta">
-              <CardContent className="p-8 flex flex-col items-center justify-center h-full text-center">
-                <p className="text-lg font-medium mb-4">나에게 맞는 클래스가 궁금하세요?</p>
-                <a
-                  href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button>
-                    무료 상담받기
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </Button>
-                </a>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      <section className="py-20 md:py-28 px-4 bg-muted/30">
+      <section id="reviews" className="py-20 md:py-28 px-4 bg-muted/30">
         <div className="container mx-auto max-w-5xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Why Choose Us</p>
-              <h3 className="text-3xl md:text-4xl font-light mb-6" data-testid="text-why-title">
-                <span className="font-medium">2,800명</span>이 선택한 이유
-              </h3>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-medium">1</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">나만을 위한 1:1 맞춤 커리큘럼</h4>
-                    <p className="text-muted-foreground text-sm">
-                      개인의 피부톤, 얼굴형, 취향에 맞춘 맞춤형 수업을 진행합니다.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-medium">2</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">체계적인 단계별 교육</h4>
-                    <p className="text-muted-foreground text-sm">
-                      기초부터 심화까지 단계별로 배워 확실하게 실력을 향상시킵니다.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <span className="text-primary font-medium">3</span>
-                  </div>
-                  <div>
-                    <h4 className="font-medium mb-1">강남역 도보 3분 접근성</h4>
-                    <p className="text-muted-foreground text-sm">
-                      편리한 위치에서 부담 없이 수업에 참여할 수 있습니다.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-rose-100 to-amber-50 dark:from-rose-900/20 dark:to-amber-900/10 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <Sparkles className="w-12 h-12 mx-auto mb-4 text-primary/40" />
-                  <p className="text-lg font-light text-muted-foreground">
-                    나만의 메이크업 스타일을 찾아보세요
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="reviews" className="py-20 md:py-28 px-4">
-        <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">Reviews</p>
             <h3 className="text-3xl md:text-4xl font-light" data-testid="text-reviews-title">
-              수강생 <span className="font-medium">후기</span>
+              수강생 <span className="font-medium">리얼 후기</span>
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <Card data-testid="card-review-1">
               <CardContent className="p-8">
                 <div className="text-4xl text-primary/20 mb-4 font-serif">"</div>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  메이크업을 전혀 못하던 제가 이제는 혼자서도 자신있게 할 수 있게 되었어요. 정말 감사합니다!
+                  유튜브만 보다가 직접 <span className="text-foreground font-medium">1:1 메이크업 강좌</span>를 들으니 
+                  브러쉬 잡는 법부터 달랐어요. 이제 <span className="text-foreground font-medium">출근 준비 시간이 반으로 줄었습니다!</span>
                 </p>
                 <div className="flex items-center gap-1 mb-3">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm font-medium">김** 수강생</p>
-                <p className="text-xs text-muted-foreground">셀프메이크업 과정</p>
+                <p className="text-sm font-medium">30대 직장인 김OO님</p>
               </CardContent>
             </Card>
 
@@ -314,31 +252,15 @@ export default function MainPage() {
               <CardContent className="p-8">
                 <div className="text-4xl text-primary/20 mb-4 font-serif">"</div>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  1:1 수업이라 제 얼굴에 맞는 메이크업을 배울 수 있어서 좋았어요. 다른 곳과 확실히 달라요.
+                  똥손이라 걱정했는데, <span className="text-foreground font-medium">제 눈에 맞는 아이라인 그리는 법</span>을 배우고 
+                  자신감이 생겼어요. <span className="text-foreground font-medium">나에게 맞는 화장법 찾기</span>를 원하신다면 강력 추천합니다.
                 </p>
                 <div className="flex items-center gap-1 mb-3">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm font-medium">이** 수강생</p>
-                <p className="text-xs text-muted-foreground">취미반 과정</p>
-              </CardContent>
-            </Card>
-
-            <Card data-testid="card-review-3">
-              <CardContent className="p-8">
-                <div className="text-4xl text-primary/20 mb-4 font-serif">"</div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  자격증 준비하면서 불안했는데, 체계적인 커리큘럼 덕분에 한 번에 합격했습니다!
-                </p>
-                <div className="flex items-center gap-1 mb-3">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <p className="text-sm font-medium">박** 수강생</p>
-                <p className="text-xs text-muted-foreground">자격증반 과정</p>
+                <p className="text-sm font-medium">20대 대학생 이OO님</p>
               </CardContent>
             </Card>
           </div>
@@ -355,6 +277,83 @@ export default function MainPage() {
               </Button>
             </a>
           </div>
+        </div>
+      </section>
+
+      <section id="faq" className="py-20 md:py-28 px-4">
+        <div className="container mx-auto max-w-3xl">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">FAQ</p>
+            <h3 className="text-3xl md:text-4xl font-light" data-testid="text-faq-title">
+              자주 묻는 <span className="font-medium">질문</span>
+            </h3>
+          </div>
+
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1" data-testid="faq-item-1">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>메이크업을 한 번도 안 해본 완전 초보도 가능한가요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  네, 가능합니다. 저희 클래스는 <span className="text-foreground font-medium">기초 스킨케어부터 도구 사용법</span>까지 
+                  알려드리는 기초 메이크업 배우기 과정에 특화되어 있습니다. 
+                  브러쉬 잡는 법부터 차근차근 알려드려요.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-2" data-testid="faq-item-2">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>준비물이 따로 필요한가요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  평소 사용하시는 <span className="text-foreground font-medium">화장품(파우치)을 가져오시면 됩니다.</span> 
+                  부족한 제품은 샵에 비치된 전문가용 제품으로 퍼스널컬러 메이크업 실습을 진행합니다.
+                  내 파우치 제품을 활용해 배우니 집에 가서도 바로 적용할 수 있어요!
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-3" data-testid="faq-item-3">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>레슨 시간은 얼마나 걸리나요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  1:1 레슨은 보통 <span className="text-foreground font-medium">1시간 30분 ~ 2시간</span> 정도 소요됩니다. 
+                  개인의 수준과 목표에 따라 조금씩 달라질 수 있으며, 
+                  상담 시 자세한 커리큘럼을 안내해 드립니다.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-4" data-testid="faq-item-4">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>한 번 레슨으로 충분한가요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed">
+                  원데이 클래스만으로도 <span className="text-foreground font-medium">데일리 메이크업의 기본기</span>를 
+                  충분히 익히실 수 있습니다. 더 심화된 내용을 원하시면 추가 레슨도 가능해요. 
+                  상담 시 개인 목표에 맞는 과정을 추천해 드립니다.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
@@ -422,20 +421,23 @@ export default function MainPage() {
         
         <div className="relative z-10 text-center max-w-2xl mx-auto">
           <h3 className="text-3xl md:text-4xl font-light mb-4" data-testid="text-cta-title">
-            나만의 메이크업 스타일을
-            <br />
-            <span className="font-medium">찾아보세요</span>
+            지금 바로<br />
+            <span className="font-medium">'곰손 탈출'</span>을 시작하세요!
           </h3>
-          <p className="text-muted-foreground mb-8">
-            무료 상담을 통해 나에게 맞는 프로그램을 추천받으세요
+          <p className="text-muted-foreground mb-4">
+            아래 버튼을 눌러 상담을 신청해 보세요.
           </p>
+          <div className="flex items-center justify-center gap-2 text-sm text-primary mb-8">
+            <Gift className="w-4 h-4" />
+            <span>선착순 5분께 브러쉬 세트 증정!</span>
+          </div>
           <a
             href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button size="lg" className="px-10" data-testid="button-cta-booking">
-              무료 상담 신청하기
+              1:1 레슨 상담 및 예약하기
             </Button>
           </a>
         </div>
@@ -447,17 +449,16 @@ export default function MainPage() {
             <div>
               <h4 className="font-medium mb-3">GN Makeup</h4>
               <p className="text-sm text-muted-foreground">
-                2,800명 이상의 수강생이 선택한
-                <br />
+                화알못도 금손이 되는<br />
                 1:1 맞춤 메이크업 클래스
               </p>
             </div>
             <div>
-              <h4 className="font-medium mb-3">프로그램</h4>
+              <h4 className="font-medium mb-3">커리큘럼</h4>
               <ul className="text-sm text-muted-foreground space-y-2">
-                <li>셀프메이크업</li>
-                <li>취미반 / 자격증반</li>
-                <li>대학입시반 / 전문가반</li>
+                <li>파우치 점검 (내 화장품 활용)</li>
+                <li>아이 메이크업 (눈화장 공식)</li>
+                <li>10분 퀵 메이크업 (출근 화장)</li>
               </ul>
             </div>
             <div>
