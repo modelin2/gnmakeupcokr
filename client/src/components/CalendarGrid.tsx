@@ -123,13 +123,14 @@ export function CalendarGrid({
                   {format(dayDate, "d")}
                 </span>
               </div>
-              <div className="space-y-px overflow-hidden">
+              <div className="space-y-0.5 overflow-hidden">
                 {dayAppointments.slice(0, 10).map((apt) => (
                   <div
                     key={apt.id}
-                    className="flex items-center gap-0.5 text-[10px] leading-tight px-0.5 py-px rounded truncate cursor-pointer"
+                    className="text-[9px] leading-none px-0.5 py-0.5 rounded cursor-pointer"
                     style={{
-                      backgroundColor: `${getCategoryColor(apt.category)}15`,
+                      backgroundColor: `${getCategoryColor(apt.category)}20`,
+                      borderLeft: `2px solid ${getCategoryColor(apt.category)}`,
                     }}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -137,11 +138,8 @@ export function CalendarGrid({
                     }}
                     data-testid={`calendar-appointment-${apt.id}`}
                   >
-                    <span 
-                      className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: getCategoryColor(apt.category) }}
-                    />
-                    <span className="truncate">{apt.name}</span>
+                    <div className="truncate opacity-70">{apt.time}</div>
+                    <div className="truncate font-medium">{apt.name}</div>
                   </div>
                 ))}
                 {dayAppointments.length > 10 && (
