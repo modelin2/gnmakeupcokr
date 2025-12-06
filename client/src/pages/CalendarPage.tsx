@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { CalendarGrid } from "@/components/CalendarGrid";
 import { AppointmentList } from "@/components/AppointmentList";
 import { AppointmentDialog } from "@/components/AppointmentDialog";
@@ -10,8 +11,34 @@ import { ImportDataDialog } from "@/components/ImportDataDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Plus, Upload, CalendarDays } from "lucide-react";
+import { apiRequest, queryClient } from "@/lib/queryClient";
+import { Plus, Upload, CalendarDays, Loader2 } from "lucide-react";
 import type { Appointment } from "@/lib/types";
+
+interface ApiAppointment {
+  id: number;
+  name: string;
+  category: number;
+  date: string;
+  time: string;
+  phone: string | null;
+  notes: string | null;
+  secret: boolean | null;
+  originalNo: number | null;
+}
+
+function parseApiAppointment(apt: ApiAppointment): Appointment {
+  return {
+    id: apt.id,
+    name: apt.name,
+    category: apt.category,
+    date: new Date(apt.date),
+    time: apt.time,
+    phone: apt.phone || undefined,
+    notes: apt.notes || undefined,
+    secret: apt.secret || undefined,
+  };
+}
 
 export default function CalendarPage() {
   const { toast } = useToast();
@@ -26,17 +53,59 @@ export default function CalendarPage() {
   const [showImportDialog, setShowImportDialog] = useState(false);
   
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
-  
-  // todo: remove mock functionality - replace with real API data
-  const [appointments, setAppointments] = useState<Appointment[]>([
-    { id: 1, name: "김선영", category: 1, date: new Date(), time: "오전10시", phone: "010-1234-5678", notes: "눈썹 반영구 시술" },
-    { id: 2, name: "이나영", category: 2, date: new Date(), time: "오후2시", phone: "010-2345-6789" },
-    { id: 3, name: "박지현", category: 3, date: new Date(), time: "오후4시30분", notes: "상담 예정" },
-    { id: 4, name: "최수연", category: 4, date: new Date(Date.now() + 86400000), time: "오전11시", phone: "010-3456-7890" },
-    { id: 5, name: "정민아", category: 5, date: new Date(Date.now() + 86400000 * 2), time: "오후1시" },
-    { id: 6, name: "한소희", category: 6, date: new Date(Date.now() - 86400000), time: "오전9시30분", phone: "010-4567-8901" },
-    { id: 7, name: "송혜교", category: 7, date: new Date(Date.now() + 86400000 * 3), time: "오후3시", notes: "재방문 고객" },
-  ]);
+
+  const { data: apiAppointments = [], isLoading } = useQuery<ApiAppointment[]>({
+    queryKey: ['/api/appointments'],
+  });
+
+  const appointments = useMemo(() => {
+    return apiAppointments.map(parseApiAppointment);
+  }, [apiAppointments]);
+
+  const createMutation = useMutation({
+    mutationFn: async (data: { name: string; category: number; date: Date; time: string; phone?: string; notes?: string }) => {
+      const response = await apiRequest("POST", "/api/appointments", {
+        ...data,
+        date: data.date.toISOString(),
+      });
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/appointments'] });
+    },
+  });
+
+  const updateMutation = useMutation({
+    mutationFn: async ({ id, data }: { id: number; data: { name: string; category: number; date: Date; time: string; phone?: string; notes?: string } }) => {
+      const response = await apiRequest("PUT", `/api/appointments/${id}`, {
+        ...data,
+        date: data.date.toISOString(),
+      });
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/appointments'] });
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (id: number) => {
+      await apiRequest("DELETE", `/api/appointments/${id}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/appointments'] });
+    },
+  });
+
+  const importMutation = useMutation({
+    mutationFn: async (sqlContent: string) => {
+      const response = await apiRequest("POST", "/api/appointments/import", { sqlContent });
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['/api/appointments'] });
+    },
+  });
 
   const filteredAppointments = useMemo(() => {
     let result = appointments;
@@ -63,74 +132,85 @@ export default function CalendarPage() {
     setShowDetailDialog(true);
   };
 
-  const handleAddAppointment = (data: any) => {
-    // todo: remove mock functionality - replace with real API call
-    const newAppointment: Appointment = {
-      id: Date.now(),
-      name: data.name,
-      category: parseInt(data.category),
-      date: data.date,
-      time: data.time,
-      phone: data.phone,
-      notes: data.notes,
-    };
-    setAppointments((prev) => [...prev, newAppointment]);
-    toast({
-      title: "예약 등록 완료",
-      description: `${data.name}님의 예약이 등록되었습니다.`,
-    });
+  const handleAddAppointment = async (data: any) => {
+    try {
+      await createMutation.mutateAsync({
+        name: data.name,
+        category: parseInt(data.category),
+        date: data.date,
+        time: data.time,
+        phone: data.phone || undefined,
+        notes: data.notes || undefined,
+      });
+      setShowAddDialog(false);
+      toast({
+        title: "예약 등록 완료",
+        description: `${data.name}님의 예약이 등록되었습니다.`,
+      });
+    } catch (error) {
+      toast({
+        title: "오류",
+        description: "예약 등록에 실패했습니다.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleEditAppointment = (data: any) => {
+  const handleEditAppointment = async (data: any) => {
     if (!selectedAppointment) return;
-    // todo: remove mock functionality - replace with real API call
-    setAppointments((prev) =>
-      prev.map((apt) =>
-        apt.id === selectedAppointment.id
-          ? {
-              ...apt,
-              name: data.name,
-              category: parseInt(data.category),
-              date: data.date,
-              time: data.time,
-              phone: data.phone,
-              notes: data.notes,
-            }
-          : apt
-      )
-    );
-    toast({
-      title: "예약 수정 완료",
-      description: `${data.name}님의 예약이 수정되었습니다.`,
-    });
+    try {
+      await updateMutation.mutateAsync({
+        id: selectedAppointment.id,
+        data: {
+          name: data.name,
+          category: parseInt(data.category),
+          date: data.date,
+          time: data.time,
+          phone: data.phone || undefined,
+          notes: data.notes || undefined,
+        },
+      });
+      setShowEditDialog(false);
+      toast({
+        title: "예약 수정 완료",
+        description: `${data.name}님의 예약이 수정되었습니다.`,
+      });
+    } catch (error) {
+      toast({
+        title: "오류",
+        description: "예약 수정에 실패했습니다.",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleDeleteAppointment = () => {
+  const handleDeleteAppointment = async () => {
     if (!selectedAppointment) return;
-    // todo: remove mock functionality - replace with real API call
-    setAppointments((prev) => prev.filter((apt) => apt.id !== selectedAppointment.id));
-    setShowDeleteDialog(false);
-    setShowDetailDialog(false);
-    toast({
-      title: "예약 삭제 완료",
-      description: "예약이 삭제되었습니다.",
-    });
+    try {
+      await deleteMutation.mutateAsync(selectedAppointment.id);
+      setShowDeleteDialog(false);
+      setShowDetailDialog(false);
+      toast({
+        title: "예약 삭제 완료",
+        description: "예약이 삭제되었습니다.",
+      });
+    } catch (error) {
+      toast({
+        title: "오류",
+        description: "예약 삭제에 실패했습니다.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleImport = async (file: File) => {
-    // todo: remove mock functionality - replace with real API call
-    console.log("Importing file:", file.name);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    
-    // Mock: add some imported appointments
-    const importedAppointments: Appointment[] = [
-      { id: Date.now() + 1, name: "가져온 예약1", category: 1, date: new Date(2024, 0, 15), time: "오전10시" },
-      { id: Date.now() + 2, name: "가져온 예약2", category: 2, date: new Date(2024, 0, 20), time: "오후2시" },
-    ];
-    
-    setAppointments((prev) => [...prev, ...importedAppointments]);
-    
-    return { success: true, count: importedAppointments.length };
+    const sqlContent = await file.text();
+    try {
+      const result = await importMutation.mutateAsync(sqlContent);
+      return { success: true, count: result.importedCount };
+    } catch (error) {
+      throw error;
+    }
   };
 
   const handleCategoryToggle = (categoryId: number) => {
@@ -140,6 +220,14 @@ export default function CalendarPage() {
         : [...prev, categoryId]
     );
   };
+
+  if (isLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-background" data-testid="page-calendar-loading">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen flex flex-col bg-background" data-testid="page-calendar">
