@@ -141,7 +141,7 @@ export function CalendarGrid({
                       className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                       style={{ backgroundColor: getCategoryColor(apt.category) }}
                     />
-                    <span className="truncate">{apt.time} {apt.name}</span>
+                    <span className="truncate">{apt.name}</span>
                   </div>
                 ))}
                 {dayAppointments.length > 10 && (
