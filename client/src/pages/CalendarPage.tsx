@@ -8,6 +8,7 @@ import { DeleteConfirmDialog } from "@/components/DeleteConfirmDialog";
 import { SearchBar } from "@/components/SearchBar";
 import { CategoryFilter } from "@/components/CategoryFilter";
 import { ImportDataDialog } from "@/components/ImportDataDialog";
+import { PasswordDialog } from "@/components/PasswordDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -51,6 +52,10 @@ export default function CalendarPage() {
   const [showEditDialog, setShowEditDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
+  const [passwordAction, setPasswordAction] = useState<"add" | "edit" | "search" | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [pendingSearchQuery, setPendingSearchQuery] = useState("");
   
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
 
@@ -223,6 +228,50 @@ export default function CalendarPage() {
     );
   };
 
+  const handleAddClick = () => {
+    if (isAuthenticated) {
+      setShowAddDialog(true);
+    } else {
+      setPasswordAction("add");
+      setShowPasswordDialog(true);
+    }
+  };
+
+  const handleEditClick = () => {
+    if (isAuthenticated) {
+      setShowEditDialog(true);
+    } else {
+      setPasswordAction("edit");
+      setShowPasswordDialog(true);
+    }
+  };
+
+  const handleSearchChange = (query: string) => {
+    if (!query) {
+      setSearchQuery("");
+      return;
+    }
+    if (isAuthenticated) {
+      setSearchQuery(query);
+    } else {
+      setPendingSearchQuery(query);
+      setPasswordAction("search");
+      setShowPasswordDialog(true);
+    }
+  };
+
+  const handlePasswordSuccess = () => {
+    setIsAuthenticated(true);
+    if (passwordAction === "add") {
+      setShowAddDialog(true);
+    } else if (passwordAction === "edit") {
+      setShowEditDialog(true);
+    } else if (passwordAction === "search") {
+      setSearchQuery(pendingSearchQuery);
+    }
+    setPasswordAction(null);
+  };
+
   if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center bg-background" data-testid="page-calendar-loading">
@@ -243,7 +292,7 @@ export default function CalendarPage() {
             <Upload className="h-4 w-4 mr-2" />
             가져오기
           </Button>
-          <Button onClick={() => setShowAddDialog(true)} data-testid="button-add-appointment">
+          <Button onClick={handleAddClick} data-testid="button-add-appointment">
             <Plus className="h-4 w-4 mr-2" />
             예약 추가
           </Button>
@@ -252,7 +301,7 @@ export default function CalendarPage() {
       </header>
 
       <div className="p-4 space-y-4 border-b">
-        <SearchBar onSearch={setSearchQuery} />
+        <SearchBar onSearch={handleSearchChange} />
         <CategoryFilter
           selectedCategories={selectedCategories}
           onToggle={handleCategoryToggle}
@@ -298,7 +347,7 @@ export default function CalendarPage() {
         appointment={selectedAppointment}
         onEdit={() => {
           setShowDetailDialog(false);
-          setShowEditDialog(true);
+          handleEditClick();
         }}
         onDelete={() => {
           setShowDeleteDialog(true);
@@ -315,6 +364,12 @@ export default function CalendarPage() {
         open={showImportDialog}
         onOpenChange={setShowImportDialog}
         onImport={handleImport}
+      />
+
+      <PasswordDialog
+        open={showPasswordDialog}
+        onOpenChange={setShowPasswordDialog}
+        onSuccess={handlePasswordSuccess}
       />
     </div>
   );

@@ -124,7 +124,7 @@ export function CalendarGrid({
                 </span>
               </div>
               <div className="space-y-0.5 overflow-hidden">
-                {dayAppointments.slice(0, 3).map((apt) => (
+                {dayAppointments.slice(0, 10).map((apt) => (
                   <div
                     key={apt.id}
                     className="text-xs px-1 py-0.5 rounded truncate cursor-pointer"
@@ -141,9 +141,9 @@ export function CalendarGrid({
                     {apt.time} {apt.name}
                   </div>
                 ))}
-                {dayAppointments.length > 3 && (
+                {dayAppointments.length > 10 && (
                   <div className="text-xs text-muted-foreground text-center">
-                    +{dayAppointments.length - 3}개 더
+                    +{dayAppointments.length - 10}개 더
                   </div>
                 )}
               </div>

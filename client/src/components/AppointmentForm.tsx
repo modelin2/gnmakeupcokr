@@ -59,7 +59,7 @@ export function AppointmentForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: initialData?.name || "",
-      category: initialData?.category?.toString() || "",
+      category: initialData?.category?.toString() || "1",
       date: initialData?.date || new Date(),
       time: initialData?.time || "",
       phone: initialData?.phone || "",
