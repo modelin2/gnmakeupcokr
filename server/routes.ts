@@ -132,16 +132,23 @@ export async function registerRoutes(
       }
 
       const result = parseSqlBackup(sqlContent);
+      console.log("Parse result - appointments:", result.appointments.length, "skipped:", result.skipped);
+      if (result.sampleLines) {
+        console.log("Sample lines from file:", result.sampleLines);
+      }
+      
       if (result.appointments.length === 0) {
         return res.status(400).json({ 
           error: "No valid appointments found in SQL content",
-          skipped: result.skipped 
+          skipped: result.skipped,
+          sampleLines: result.sampleLines
         });
       }
 
       const count = await storage.createAppointments(result.appointments);
       res.json({ success: true, importedCount: count, skipped: result.skipped });
     } catch (error) {
+      console.error("Import error:", error);
       res.status(500).json({ error: "Failed to import appointments" });
     }
   });
@@ -150,8 +157,6 @@ export async function registerRoutes(
 }
 
 function parseSqlBackup(sqlContent: string) {
-  const delimiter = "#TNT_QUERY_DELIMITER#";
-  const queries = sqlContent.split(delimiter);
   const appointments: Array<{
     name: string;
     category: number;
@@ -159,29 +164,70 @@ function parseSqlBackup(sqlContent: string) {
     time: string;
     phone?: string;
     notes?: string;
-    secret?: boolean;
+    secret: boolean;
     originalNo?: number;
   }> = [];
   let skipped = 0;
-
+  
+  // Collect sample lines for debugging
+  const lines = sqlContent.split('\n').slice(0, 10);
+  const sampleLines = lines.map(l => l.substring(0, 200));
+  
+  // Try different delimiters
+  let queries: string[];
+  if (sqlContent.includes("#TNT_QUERY_DELIMITER#")) {
+    queries = sqlContent.split("#TNT_QUERY_DELIMITER#");
+  } else if (sqlContent.includes(";\n")) {
+    queries = sqlContent.split(";\n");
+  } else {
+    queries = sqlContent.split(";");
+  }
+  
+  console.log("Total queries found:", queries.length);
+  
   for (const query of queries) {
     const trimmed = query.trim();
-    if (!trimmed.toLowerCase().startsWith("insert into a_tn2_makeupday3_list")) {
+    if (!trimmed) continue;
+    
+    // Match INSERT INTO with any table name containing makeupday or appointment
+    const insertMatch = trimmed.toLowerCase().match(/insert\s+into\s+(\S+)/);
+    if (!insertMatch) {
       continue;
     }
-
-    const fields: Record<string, string> = {};
-    const setMatch = trimmed.match(/set\s+(.+)$/i);
-    if (!setMatch) {
+    
+    const tableName = insertMatch[1];
+    // Log first few table names to debug
+    if (skipped < 3) {
+      console.log("Found INSERT for table:", tableName);
+    }
+    
+    // Accept any table with makeupday in the name
+    if (!tableName.includes("makeupday")) {
       skipped++;
       continue;
     }
 
-    const setPart = setMatch[1];
-    const fieldRegex = /(\w+)\s*=\s*'([^']*)'/g;
-    let match;
-    while ((match = fieldRegex.exec(setPart)) !== null) {
-      fields[match[1]] = match[2];
+    const fields: Record<string, string> = {};
+    
+    // Try SET syntax first
+    const setMatch = trimmed.match(/set\s+(.+)$/is);
+    if (setMatch) {
+      const setPart = setMatch[1];
+      const fieldRegex = /(\w+)\s*=\s*'([^']*)'/g;
+      let match;
+      while ((match = fieldRegex.exec(setPart)) !== null) {
+        fields[match[1]] = match[2];
+      }
+    } else {
+      // Try VALUES syntax: INSERT INTO table (col1, col2) VALUES ('val1', 'val2')
+      const colsMatch = trimmed.match(/\(([^)]+)\)\s*values\s*\(([^)]+)\)/i);
+      if (colsMatch) {
+        const cols = colsMatch[1].split(',').map(c => c.trim().replace(/`/g, ''));
+        const vals = colsMatch[2].match(/'([^']*)'/g)?.map(v => v.slice(1, -1)) || [];
+        for (let i = 0; i < cols.length && i < vals.length; i++) {
+          fields[cols[i]] = vals[i];
+        }
+      }
     }
 
     if (!fields.name) {
@@ -216,5 +262,5 @@ function parseSqlBackup(sqlContent: string) {
     });
   }
 
-  return { appointments, skipped };
+  return { appointments, skipped, sampleLines };
 }
