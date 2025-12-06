@@ -13,7 +13,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { Plus, Upload, CalendarDays, Loader2 } from "lucide-react";
+import { Plus, Upload, CalendarDays, Loader2, Home } from "lucide-react";
+import { Link } from "wouter";
 import type { Appointment } from "@/lib/types";
 
 interface ApiAppointment {
@@ -284,8 +285,13 @@ export default function CalendarPage() {
     <div className="h-screen flex flex-col bg-background" data-testid="page-calendar">
       <header className="flex items-center justify-between gap-4 p-4 border-b flex-wrap">
         <div className="flex items-center gap-3">
+          <Link href="/" data-testid="link-home">
+            <Button variant="ghost" size="icon">
+              <Home className="h-5 w-5" />
+            </Button>
+          </Link>
           <CalendarDays className="h-6 w-6 text-primary" />
-          <h1 className="text-xl font-semibold">예약 달력</h1>
+          <h1 className="text-xl font-semibold">스케줄</h1>
         </div>
         <div className="flex items-center gap-2 flex-wrap">
           <Button variant="outline" onClick={() => setShowImportDialog(true)} data-testid="button-import">
