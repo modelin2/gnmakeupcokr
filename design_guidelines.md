@@ -1,182 +1,155 @@
-# Design Guidelines: Calendar-Based Appointment Management System
+# Design Guidelines: Premium Makeup Tutorial Landing Page
 
 ## Design Approach
 
-**Selected Framework**: Material Design with productivity app influences (Notion, Linear)
+**Selected Framework**: Reference-based approach inspired by luxury beauty brands (Charlotte Tilbury, Dior Beauty, Pat McGrath Labs)
 
-**Rationale**: This appointment management system requires efficiency, information density, and data clarity. Material Design provides excellent calendar patterns and form components while maintaining clean aesthetics suitable for a beauty/makeup service business context.
+**Rationale**: This landing page requires emotional engagement and visual elegance to communicate premium 1:1 makeup education services. Drawing from high-end beauty brand aesthetics while maintaining clarity for service offerings and conversion.
 
 **Core Principles**:
-- Information hierarchy and scanability
-- Efficient data entry and editing
-- Clear visual categorization
-- Professional, clean aesthetics
-- Mobile-responsive layouts
+- Elegant, spacious layouts with generous whitespace
+- Sophisticated typography hierarchy
+- Trust-building through social proof (2800+ students)
+- Clear service differentiation
+- Luxurious yet approachable feel
 
 ---
 
 ## Typography
 
 **Font Stack**: 
-- Primary: Inter or Noto Sans KR (Korean support essential)
-- System fallback: -apple-system, BlinkMacSystemFont, "Segoe UI"
+- Primary: Cormorant Garamond (elegant serif for headlines)
+- Secondary: Inter or Noto Sans KR (clean sans-serif for body, Korean support)
+- System fallback: -apple-system, BlinkMacSystemFont
 
 **Type Scale**:
-- Page titles: text-3xl font-bold (appointments list, settings)
-- Section headers: text-xl font-semibold (calendar month/year, modal headers)
-- Calendar dates: text-lg font-medium (active day numbers)
-- Appointment titles: text-base font-medium (customer names)
-- Body text: text-sm (appointment details, form labels)
-- Meta info: text-xs (timestamps, categories)
+- Hero headline: text-5xl md:text-6xl lg:text-7xl font-light (tracking-tight)
+- Section titles: text-4xl md:text-5xl font-light
+- Subheadings: text-2xl md:text-3xl font-normal
+- Service titles: text-xl font-medium
+- Body text: text-base leading-relaxed
+- Testimonial quotes: text-lg md:text-xl font-light italic
+- Meta info: text-sm uppercase tracking-wide
 
-**Korean Text Optimization**: Ensure adequate line-height (1.6-1.7) for Korean characters
+**Korean Text**: Line-height 1.7, ensure elegant pairing with serif headlines
 
 ---
 
 ## Layout System
 
-**Spacing Primitives**: Tailwind units of 2, 4, 6, 8, 12, 16
-- Component padding: p-4 to p-6
-- Section spacing: space-y-6 to space-y-8
-- Card gaps: gap-4
-- Form field spacing: space-y-4
+**Spacing Primitives**: Tailwind units of 4, 8, 12, 16, 20, 24
+- Section padding: py-20 md:py-32 for spacious feel
+- Component padding: p-8 to p-12
+- Content spacing: space-y-8 to space-y-12
+- Generous margins: my-16 to my-24 between major sections
 
-**Grid Structure**:
-- Main container: max-w-7xl mx-auto px-4
-- Calendar grid: 7-column layout (days of week)
-- Appointment list: Single column on mobile, potential 2-column on desktop
-- Form layouts: Single column, max-w-2xl for optimal readability
-
-**Responsive Breakpoints**:
-- Mobile: Full-width calendar with vertical scrolling
-- Tablet (md:): Side-by-side views (calendar + details panel)
-- Desktop (lg:): Three-column layout option (sidebar navigation + calendar + details)
+**Container Structure**:
+- Max-width: max-w-7xl mx-auto
+- Content sections: max-w-5xl for text-heavy areas
+- Full-width backgrounds with inner constraints
 
 ---
 
 ## Component Library
 
-### Navigation
-- **Top Navigation Bar**: Fixed header with app logo/title, view switcher (Month/Week/Day), action buttons
-- **Sidebar (desktop)**: Category filters, quick stats, date picker
-- **Mobile Navigation**: Bottom navigation bar with key actions
+### Hero Section (Full viewport impact, 85vh min-height)
+- Large elegant headline: "당신만을 위한 메이크업 레슨" (centered)
+- Subheadline: "2800명 이상의 수강생이 선택한 1:1 맞춤 교육"
+- Two CTA buttons: Primary (상담 신청하기), Secondary (수강후기 보기)
+- Subtle scroll indicator at bottom
+- Background: Hero image with overlay for text readability
+- Buttons with backdrop-blur-md on image backgrounds
 
-### Calendar Components
-- **Month View**: Grid-based calendar with date cells containing appointment dots/indicators
-- **Week View**: Horizontal timeline with hourly slots
-- **Day View**: Vertical timeline with detailed appointment blocks
-- **Date Cells**: Clear typography, hover states, selected state with subtle border/background
-- **Appointment Indicators**: Small colored dots or bars (7 category colors)
+### Trust Bar (Immediately below hero, py-12)
+- Three columns (lg:flex justify-center gap-16)
+- Stats with large numbers: "2800+" students, "강남역 3분", "1:1 맞춤"
+- Elegant dividers between stats
+- Centered layout with icon + number + label pattern
 
-### Cards & Containers
-- **Appointment Cards**: 
-  - Rounded corners (rounded-lg)
-  - Subtle shadow (shadow-sm)
-  - Left border (4px) in category color
-  - Compact padding (p-4)
-  - Hover state: shadow-md transition
-- **Modal/Drawer**: Full-screen on mobile, centered dialog on desktop (max-w-2xl)
-- **Form Containers**: Clean backgrounds, generous padding (p-6)
+### Services Section (Multi-column grid, py-24)
+- Section header: "프로그램 안내" (centered, mb-16)
+- Five service cards in 1/2/3 column grid (mobile/tablet/desktop)
+- Cards: hover-lift effect (hover:transform hover:-translate-y-2)
+- Each card: Icon/illustration, service name, brief description, duration/price indicator
+- Services: 셀프메이크업, 취미반, 자격증반, 대학입시반, 전문가반
 
-### Forms & Inputs
-- **Text Inputs**: 
-  - Border style: border rounded-md
-  - Focused state: ring-2 with brand color
-  - Height: h-10 for standard inputs
-  - Korean IME support essential
-- **Date/Time Pickers**: Native or custom calendar picker, time dropdown with common slots
-- **Select Dropdowns**: Category selector with color preview
-- **Textarea**: For appointment details/notes, min-h-24
-- **Buttons**:
-  - Primary: Solid fill, medium weight, px-6 py-2.5
-  - Secondary: Outline style
-  - Danger: Red variant for delete actions
-  - Icon buttons: Square (h-10 w-10) for compact areas
+### Feature Highlights (Two-column alternating layout, py-24)
+- Three feature blocks, alternating image-left/image-right
+- Features: 1:1 맞춤 커리큘럼, 강남역 접근성, 전문 강사진
+- Each block: Large image (50% width), content area (50% width)
+- Content: Headline, 2-3 paragraphs, supporting details
+- Generous spacing between blocks (mb-20)
 
-### Data Display
-- **Appointment List Items**:
-  - Customer name (font-medium)
-  - Time (text-sm, muted)
-  - Category badge (small, rounded, colored)
-  - Phone number preview (text-xs)
-- **Category Badges**: 7 distinct colors (pastel tones for backgrounds, saturated for borders)
-  - Category 1: Blue
-  - Category 2: Purple
-  - Category 3: Pink
-  - Category 4: Orange
-  - Category 5: Green
-  - Category 6: Teal
-  - Category 7: Indigo
-- **Empty States**: Centered icon + text when no appointments
-- **Loading States**: Skeleton screens for calendar cells and lists
+### Testimonials Section (Grid layout, py-24)
+- Section header: "수강생 후기" (centered, mb-16)
+- Three-column grid on desktop (grid-cols-1 md:grid-cols-2 lg:grid-cols-3)
+- Testimonial cards with:
+  - Large opening quote mark
+  - Student quote (text-lg italic)
+  - Student name, course taken, date (text-sm)
+  - Optional student photo/avatar
+- Cards with subtle shadow and hover states
 
-### Search & Filters
-- **Search Bar**: Prominent placement in header, icon + input field
-- **Filter Chips**: Horizontal scrolling row of category filters
-- **Date Range Selector**: Compact dropdown or inline picker
+### Location Section (Split layout, py-24)
+- Two-column: Map embed (50%), Location details (50%)
+- Details: Address, transit directions, nearby landmarks
+- "길찾기" button linking to map services
+- Landmark: "강남역 3분 거리" prominently featured
 
-### Modals & Overlays
-- **Appointment Detail Modal**: 
-  - Header with customer name and edit/delete actions
-  - Organized sections (contact info, appointment details, notes)
-  - Footer with action buttons
-- **Import Data Modal**: File upload area, progress indicator, success/error messages
-- **Confirmation Dialogs**: Centered, simple yes/no for deletions
+### Final CTA Section (Full-width, centered, py-32)
+- Compelling headline: "나만의 메이크업 스타일을 찾아보세요"
+- Supporting text about free consultation
+- Large primary CTA button
+- Secondary text: "카카오톡 상담 가능" with icon
 
----
-
-## Key Screens Layout
-
-### Main Calendar View
-- Header: App title, view toggle (Month/Week/Day), Add appointment button, Search
-- Body: Calendar grid (month) or timeline (week/day)
-- Sidebar (desktop): Category legend, mini date picker, upcoming appointments preview
-
-### Appointment Creation/Edit
-- Modal or full-screen on mobile
-- Form sections: Customer info, date/time, category, details
-- Clear save/cancel actions
-
-### Import Data Screen
-- Simple upload zone
-- Progress bar during parsing
-- Success summary with stats (X appointments imported from year Y to Z)
-
----
-
-## Interactions
-
-**Minimize Animations**: Use only for essential feedback
-- Modal fade-in/out: duration-200
-- Hover state transitions: transition-all duration-150
-- Loading spinners: Simple rotation animation
-
-**Click Targets**: Minimum 44px touch targets for mobile
-
-**Keyboard Navigation**: Full support for tab navigation, enter to submit, escape to close modals
+### Footer (Multi-column, py-16)
+- Four columns on desktop (grid-cols-1 md:grid-cols-4)
+- Column 1: Brand/logo, tagline
+- Column 2: Quick links (프로그램, 후기, 위치)
+- Column 3: Contact (phone, email, Kakao)
+- Column 4: Social media icons, business hours
+- Bottom bar: Copyright, privacy policy
 
 ---
 
 ## Images
 
-**No Hero Image**: This is a utility application - no marketing/landing page needed
+**Hero Image Required**: Full-width, high-quality image of elegant makeup application or sophisticated beauty shot. Should convey luxury and professionalism. Image should extend full viewport height with subtle parallax effect.
 
-**Icons**: Heroicons (outline style for UI, solid for emphasis)
-- Calendar icon for view switcher
-- Clock for time fields
-- User for customer info
-- Tag for categories
-- Search, filter, add, edit, delete, upload icons
+**Feature Section Images**: Three lifestyle images showing:
+1. One-on-one instruction in elegant studio setting
+2. Close-up of makeup application/techniques
+3. Before/after transformation or student achievement
 
-**Avatars**: Optional customer avatar placeholders (initials-based, colored by category)
+**Service Card Icons**: Custom illustrations or elegant line icons representing each program type
+
+**Testimonial Photos**: Circular cropped student photos (optional but recommended for trust-building)
+
+**Location Map**: Embedded Google Maps or Naver Map showing Gangnam station proximity
+
+---
+
+## Interactions
+
+**Minimal, Elegant Animations**:
+- Fade-in on scroll for sections (duration-500)
+- Gentle hover lifts for cards (transform translate-y-2)
+- Smooth scroll to anchor links
+- Modal fade for detailed service information
+
+**CTA Buttons**: Prominent size (px-8 py-4), clear hierarchy, high contrast
+
+**Responsive Images**: Use srcset for optimal loading, lazy loading for below-fold images
 
 ---
 
 ## Mobile Optimization
 
-- Stack all layouts vertically on mobile
-- Bottom navigation for primary actions (Today, Add, Search)
-- Swipe gestures for day/week navigation
-- Full-screen modals for forms
-- Horizontal scroll for week view timeline
-- Touch-friendly tap targets (min 44px)
+- Hero: Full mobile viewport, stack text elements vertically
+- Stats: Vertical stack on mobile (space-y-8)
+- Services: Single column cards on mobile, two-column on tablet
+- Features: Stack image/text vertically, image-first order
+- Testimonials: Horizontal scroll carousel on mobile, grid on desktop
+- Footer: Single column stack on mobile
+- Sticky mobile CTA bar at bottom (fixed bottom-0) with primary action
+- Touch targets: Minimum 48px for all interactive elements
