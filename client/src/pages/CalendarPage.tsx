@@ -204,7 +204,9 @@ export default function CalendarPage() {
   };
 
   const handleImport = async (file: File) => {
-    const sqlContent = await file.text();
+    const arrayBuffer = await file.arrayBuffer();
+    const decoder = new TextDecoder('euc-kr');
+    const sqlContent = decoder.decode(arrayBuffer);
     try {
       const result = await importMutation.mutateAsync(sqlContent);
       return { success: true, count: result.importedCount };
