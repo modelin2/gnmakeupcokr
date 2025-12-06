@@ -11,7 +11,6 @@ import {
   Eye,
   ChevronDown,
   HelpCircle,
-  Gift,
   Palette,
   Timer,
   Briefcase
@@ -23,7 +22,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import logoImage from "@assets/logo_gnmakeup_1765022120173.png";
 import heroImage2 from "@assets/지엔메이크업2_1765022120174.png";
 
 export default function MainPage() {
@@ -36,12 +34,9 @@ export default function MainPage() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-4 py-2 flex items-center justify-between gap-4 flex-wrap">
           <Link href="/" data-testid="link-home">
-            <img 
-              src={logoImage} 
-              alt="GN Makeup by Kimmina" 
-              className="h-10 md:h-12 object-contain invert dark:invert-0"
-              data-testid="img-logo"
-            />
+            <span className="text-xl md:text-2xl font-light tracking-wide" data-testid="text-logo">
+              <span className="font-semibold">GN</span> Makeup
+            </span>
           </Link>
           <nav className="flex items-center gap-2 flex-wrap">
             <a
@@ -93,7 +88,7 @@ export default function MainPage() {
             나만의 얼굴 골격과 피부 톤에 맞춘 맞춤형 레슨을 경험하세요.
           </p>
           
-          <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
+          <div className="flex flex-col items-center gap-3 mb-12">
             <a
               href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
               target="_blank"
@@ -103,13 +98,6 @@ export default function MainPage() {
                 1:1 레슨 상담 및 예약하기
               </Button>
             </a>
-          </div>
-          
-          <div className="inline-flex flex-col items-center gap-2 bg-primary/10 px-6 py-3 rounded-lg text-sm mb-12">
-            <div className="flex items-center gap-2">
-              <Gift className="w-4 h-4 text-primary" />
-              <span className="font-medium text-foreground">선착순 5분께 브러쉬 세트 증정!</span>
-            </div>
             <span className="text-xs text-muted-foreground">네이버 예약에서 일반 메이크업으로 예약 후 비고에 "레슨"이라고 적어주세요</span>
           </div>
 
@@ -394,7 +382,7 @@ export default function MainPage() {
               </AccordionTrigger>
               <AccordionContent className="pl-8">
                 <p className="text-muted-foreground leading-relaxed">
-                  1:1 레슨은 보통 <span className="text-foreground font-medium">1시간 30분 ~ 2시간</span> 정도 소요됩니다. 
+                  1:1 레슨은 보통 <span className="text-foreground font-medium">1시간</span> 정도 소요됩니다. 
                   개인의 수준과 목표에 따라 조금씩 달라질 수 있으며, 
                   상담 시 자세한 커리큘럼을 안내해 드립니다.
                 </p>
@@ -440,7 +428,7 @@ export default function MainPage() {
                     <div>
                       <p className="font-medium mb-1">주소</p>
                       <p className="text-muted-foreground">
-                        서울특별시 강남구 강남대로94길 10
+                        서울 강남구 역삼동 822-7 목화밀라트 1810호
                       </p>
                     </div>
                   </div>
@@ -487,33 +475,30 @@ export default function MainPage() {
             지금 바로<br />
             <span className="font-medium">'곰손 탈출'</span>을 시작하세요!
           </h3>
-          <p className="text-muted-foreground mb-4">
+          <p className="text-muted-foreground mb-8">
             아래 버튼을 눌러 상담을 신청해 보세요.
           </p>
-          <div className="flex items-center justify-center gap-2 text-sm text-primary mb-8">
-            <Gift className="w-4 h-4" />
-            <span>선착순 5분께 브러쉬 세트 증정!</span>
+          <div className="flex flex-col items-center gap-3">
+            <a
+              href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="px-10" data-testid="button-cta-booking">
+                1:1 레슨 상담 및 예약하기
+              </Button>
+            </a>
+            <span className="text-xs text-muted-foreground">네이버 예약에서 일반 메이크업으로 예약 후 비고에 "레슨"이라고 적어주세요</span>
           </div>
-          <a
-            href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button size="lg" className="px-10" data-testid="button-cta-booking">
-              1:1 레슨 상담 및 예약하기
-            </Button>
-          </a>
         </div>
       </section>
 
       <footer className="py-12 px-4 border-t bg-card/50">
         <div className="container mx-auto max-w-5xl">
           <div className="flex justify-center mb-8">
-            <img 
-              src={logoImage} 
-              alt="GN Makeup by Kimmina" 
-              className="h-12 object-contain invert dark:invert-0"
-            />
+            <span className="text-2xl font-light tracking-wide">
+              <span className="font-semibold">GN</span> Makeup
+            </span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div className="text-center md:text-left">
@@ -557,7 +542,7 @@ export default function MainPage() {
           </div>
           <div className="pt-8 border-t text-center">
             <p className="text-sm text-muted-foreground" data-testid="text-footer">
-              © 2025 GN Makeup by Kimmina. All rights reserved.
+              © 2025 GN Makeup. All rights reserved.
             </p>
           </div>
         </div>
