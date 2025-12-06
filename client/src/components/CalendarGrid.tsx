@@ -22,6 +22,7 @@ interface CalendarGridProps {
   selectedDate: Date;
   onSelectDate: (date: Date) => void;
   onSelectAppointment?: (appointment: Appointment) => void;
+  onAddAppointment?: (date: Date) => void;
 }
 
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
@@ -31,6 +32,7 @@ export function CalendarGrid({
   selectedDate,
   onSelectDate,
   onSelectAppointment,
+  onAddAppointment,
 }: CalendarGridProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
@@ -107,8 +109,9 @@ export function CalendarGrid({
               data-testid={`calendar-day-${format(dayDate, "yyyy-MM-dd")}`}
             >
               <div className="flex items-center justify-center mb-1">
-                <span
-                  className={`text-sm w-7 h-7 flex items-center justify-center rounded-full ${
+                <button
+                  type="button"
+                  className={`text-sm w-7 h-7 flex items-center justify-center rounded-full cursor-pointer hover-elevate ${
                     isTodayDate
                       ? "bg-primary text-primary-foreground font-bold"
                       : !isCurrentMonth
@@ -119,9 +122,14 @@ export function CalendarGrid({
                       ? "text-blue-500"
                       : ""
                   }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onAddAppointment?.(dayDate);
+                  }}
+                  data-testid={`button-add-date-${format(dayDate, "yyyy-MM-dd")}`}
                 >
                   {format(dayDate, "d")}
-                </span>
+                </button>
               </div>
               <div className="space-y-0.5 overflow-hidden">
                 {dayAppointments.slice(0, 10).map((apt) => (

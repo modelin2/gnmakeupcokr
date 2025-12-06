@@ -238,6 +238,16 @@ export default function CalendarPage() {
     }
   };
 
+  const handleAddForDate = (date: Date) => {
+    setSelectedDate(date);
+    if (isAuthenticated) {
+      setShowAddDialog(true);
+    } else {
+      setPasswordAction("add");
+      setShowPasswordDialog(true);
+    }
+  };
+
   const handleEditClick = () => {
     if (isAuthenticated) {
       setShowEditDialog(true);
@@ -322,6 +332,7 @@ export default function CalendarPage() {
             selectedDate={selectedDate}
             onSelectDate={setSelectedDate}
             onSelectAppointment={handleSelectAppointment}
+            onAddAppointment={handleAddForDate}
           />
         </div>
         <div className="w-80 border-l hidden lg:block">
