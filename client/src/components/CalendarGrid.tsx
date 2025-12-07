@@ -48,8 +48,20 @@ export function CalendarGrid({
     day = addDays(day, 1);
   }
 
+  const parseTimeToMinutes = (time: string): number => {
+    const match = time.match(/(오전|오후)(\d+)시/);
+    if (!match) return 0;
+    const [, period, hourStr] = match;
+    let hour = parseInt(hourStr);
+    if (period === "오후" && hour !== 12) hour += 12;
+    if (period === "오전" && hour === 12) hour = 0;
+    return hour * 60;
+  };
+
   const getAppointmentsForDay = (date: Date) => {
-    return appointments.filter((apt) => isSameDay(apt.date, date));
+    return appointments
+      .filter((apt) => isSameDay(apt.date, date))
+      .sort((a, b) => parseTimeToMinutes(a.time) - parseTimeToMinutes(b.time));
   };
 
   const goToPrevMonth = () => setCurrentMonth(subMonths(currentMonth, 1));

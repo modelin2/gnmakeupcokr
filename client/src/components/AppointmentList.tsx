@@ -16,9 +16,19 @@ export function AppointmentList({
   selectedDate,
   onSelectAppointment,
 }: AppointmentListProps) {
+  const parseTimeToMinutes = (time: string): number => {
+    const match = time.match(/(오전|오후)(\d+)시/);
+    if (!match) return 0;
+    const [, period, hourStr] = match;
+    let hour = parseInt(hourStr);
+    if (period === "오후" && hour !== 12) hour += 12;
+    if (period === "오전" && hour === 12) hour = 0;
+    return hour * 60;
+  };
+
   const filteredAppointments = appointments
     .filter((apt) => isSameDay(apt.date, selectedDate))
-    .sort((a, b) => a.time.localeCompare(b.time));
+    .sort((a, b) => parseTimeToMinutes(a.time) - parseTimeToMinutes(b.time));
 
   return (
     <div className="flex flex-col h-full" data-testid="appointment-list">
