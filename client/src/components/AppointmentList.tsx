@@ -21,8 +21,7 @@ export function AppointmentList({
     if (!match) return 0;
     const [, period, hourStr] = match;
     let hour = parseInt(hourStr);
-    if (period === "오후" && hour !== 12) hour += 12;
-    if (period === "오전" && hour === 12) hour = 0;
+    if (period === "오후") hour += 12;
     return hour * 60;
   };
 
