@@ -71,9 +71,8 @@ export default function MainPage() {
               rel="noopener noreferrer"
               data-testid="link-shop"
             >
-              <Button variant="ghost" size="sm">
-                <ExternalLink className="w-4 h-4 mr-1" />
-                샵 바로가기
+              <Button variant="ghost" size="icon">
+                <ExternalLink className="w-4 h-4" />
               </Button>
             </a>
           </nav>
