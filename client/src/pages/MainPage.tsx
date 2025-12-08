@@ -40,6 +40,16 @@ export default function MainPage() {
           </Link>
           <nav className="flex items-center gap-2 flex-wrap">
             <a
+              href="https://gnmakeup.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-homepage"
+            >
+              <Button variant="ghost" size="sm">
+                홈페이지
+              </Button>
+            </a>
+            <a
               href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
               target="_blank"
               rel="noopener noreferrer"
