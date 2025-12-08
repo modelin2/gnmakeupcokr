@@ -13,7 +13,9 @@ import {
   HelpCircle,
   Palette,
   Timer,
-  Briefcase
+  Briefcase,
+  Car,
+  Footprints
 } from "lucide-react";
 import {
   Accordion,
@@ -454,18 +456,35 @@ export default function MainPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="p-4 rounded-lg bg-primary/5 border border-primary/10">
-                    <p className="text-sm font-medium mb-1">강남역 3분 거리</p>
-                    <p className="text-xs text-muted-foreground">
-                      강남역 11번 출구에서 도보 3분
-                    </p>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Footprints className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">도보 안내</p>
+                      <p className="text-muted-foreground">
+                        12번 출구로 나와서 직진, 다이소 올리브영 지나 바나나프레소 건물 18층 (목화밀라트)
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Car className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">주차 안내</p>
+                      <div className="text-muted-foreground space-y-1">
+                        <p>자체 주차장: 1시간 6,000원 (기계식, 주차비 지원 없음)</p>
+                        <p>공영 주차장: 1시간 3,600원 (도보 2분)</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="aspect-[4/3] lg:aspect-auto rounded-lg bg-gradient-to-br from-stone-100 to-stone-50 dark:from-stone-800 dark:to-stone-900 flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="w-10 h-10 mx-auto mb-3 text-muted-foreground/40" />
-                    <p className="text-sm text-muted-foreground">강남역 11번 출구</p>
-                    <p className="text-xs text-muted-foreground">도보 3분</p>
+                    <p className="text-sm text-muted-foreground">강남역 12번 출구</p>
+                    <p className="text-xs text-muted-foreground">도보 약 3분</p>
                   </div>
                 </div>
               </div>
@@ -546,7 +565,7 @@ export default function MainPage() {
                   네이버 예약
                 </a>
                 <p className="text-sm text-muted-foreground">
-                  강남역 11번 출구 도보 3분
+                  강남역 12번 출구 도보 3분
                 </p>
               </div>
             </div>
