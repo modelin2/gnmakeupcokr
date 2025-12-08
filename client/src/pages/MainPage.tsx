@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/accordion";
 
 import heroImage2 from "@assets/지엔메이크업2_1765022120174.png";
+import parkingGuideImage from "@assets/1765190616532_1765191268222.png";
 
 export default function MainPage() {
   const scrollToSection = (id: string) => {
@@ -480,14 +481,23 @@ export default function MainPage() {
                     </div>
                   </div>
                 </div>
-                <div className="p-4 rounded-lg bg-muted/50 text-sm space-y-3">
-                  <p className="font-medium text-foreground">공영주차장 이용 안내</p>
-                  <div className="text-muted-foreground space-y-2">
-                    <p>1. 주차장 맨 위(1층)에 자그만한 공원이 위치해 있어요!</p>
-                    <p>2. 주차 후 B2층으로 오셔서 출입문으로 나오신 후 화살표를 따라 가시면 강남역 방향이에요!</p>
-                    <p>3. 쭉 내려오시면 작은 사거리(오른쪽 김가네김밥)에서 좌회전(도로쪽으로) 해서 내려오세요.</p>
-                    <p>4. 도로다와서 오른쪽 기둥 있는 건물 (도원참치 바나나프레소 건물) 목화밀라트 18층</p>
-                    <p className="text-xs text-primary">* 주차장에서 저희 건물까지 도보 2분 거리</p>
+                <div className="space-y-4">
+                  <div className="rounded-lg overflow-hidden">
+                    <img 
+                      src={parkingGuideImage} 
+                      alt="역삼문화공원 제1호 주차장 출구" 
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <div className="p-4 rounded-lg bg-muted/50 text-sm space-y-3">
+                    <p className="font-medium text-foreground">공영주차장 이용 안내</p>
+                    <div className="text-muted-foreground space-y-2">
+                      <p>1. 주차장 맨 위(1층)에 자그만한 공원이 위치해 있어요!</p>
+                      <p>2. 주차 후 B2층으로 오셔서 출입문으로 나오신 후 화살표를 따라 가시면 강남역 방향이에요!</p>
+                      <p>3. 쭉 내려오시면 작은 사거리(오른쪽 김가네김밥)에서 좌회전(도로쪽으로) 해서 내려오세요.</p>
+                      <p>4. 도로다와서 오른쪽 기둥 있는 건물 (도원참치 바나나프레소 건물) 목화밀라트 18층</p>
+                      <p className="text-xs text-primary">* 주차장에서 저희 건물까지 도보 2분 거리</p>
+                    </div>
                   </div>
                 </div>
               </div>
