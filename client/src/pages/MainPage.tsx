@@ -56,7 +56,7 @@ export default function MainPage() {
               data-testid="link-naver-review"
             >
               <Button variant="ghost" size="sm">
-                수강후기
+                후기
               </Button>
             </a>
             <Link href="/schedule" data-testid="link-schedule">
@@ -71,8 +71,9 @@ export default function MainPage() {
               rel="noopener noreferrer"
               data-testid="link-shop"
             >
-              <Button variant="ghost" size="icon">
-                <ExternalLink className="w-4 h-4" />
+              <Button variant="ghost" size="sm">
+                <ExternalLink className="w-4 h-4 mr-1" />
+                샵
               </Button>
             </a>
           </nav>
