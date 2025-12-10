@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +20,28 @@ interface PasswordDialogProps {
 }
 
 const CORRECT_PASSWORD = "0060";
+const AUTH_KEY = "gn_makeup_auth";
+const SESSION_DURATION = 4 * 60 * 60 * 1000;
+
+export function isSessionValid(): boolean {
+  try {
+    const stored = localStorage.getItem(AUTH_KEY);
+    if (!stored) return false;
+    const { timestamp } = JSON.parse(stored);
+    const now = Date.now();
+    return now - timestamp < SESSION_DURATION;
+  } catch {
+    return false;
+  }
+}
+
+export function setAuthSession(): void {
+  localStorage.setItem(AUTH_KEY, JSON.stringify({ timestamp: Date.now() }));
+}
+
+export function clearAuthSession(): void {
+  localStorage.removeItem(AUTH_KEY);
+}
 
 export function PasswordDialog({
   open,
@@ -31,11 +53,19 @@ export function PasswordDialog({
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    if (open && isSessionValid()) {
+      onOpenChange(false);
+      onSuccess();
+    }
+  }, [open, onOpenChange, onSuccess]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === CORRECT_PASSWORD) {
       setPassword("");
       setError(false);
+      setAuthSession();
       onOpenChange(false);
       onSuccess();
     } else {
