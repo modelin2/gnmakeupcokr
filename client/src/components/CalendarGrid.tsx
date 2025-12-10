@@ -146,7 +146,7 @@ export function CalendarGrid({
                 {dayAppointments.slice(0, 10).map((apt) => (
                   <div
                     key={apt.id}
-                    className="text-[9px] leading-none px-0.5 py-0.5 rounded cursor-pointer"
+                    className="text-[9px] leading-tight px-0.5 py-0.5 rounded cursor-pointer"
                     style={{
                       backgroundColor: `${getCategoryColor(apt.category)}20`,
                       borderLeft: `2px solid ${getCategoryColor(apt.category)}`,
@@ -157,8 +157,9 @@ export function CalendarGrid({
                     }}
                     data-testid={`calendar-appointment-${apt.id}`}
                   >
-                    <div className="truncate opacity-70">{apt.time}</div>
-                    <div className="truncate font-medium">{apt.name}</div>
+                    <div className="break-words font-medium">
+                      {apt.name} <span className="opacity-70">{apt.time.replace('오전', '').replace('오후', '')}</span>
+                    </div>
                   </div>
                 ))}
                 {dayAppointments.length > 10 && (
