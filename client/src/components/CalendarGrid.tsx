@@ -157,9 +157,8 @@ export function CalendarGrid({
                     }}
                     data-testid={`calendar-appointment-${apt.id}`}
                   >
-                    <div className="break-words font-medium">
-                      {apt.name} <span className="opacity-70">{apt.time.replace('오전', '').replace('오후', '')}</span>
-                    </div>
+                    <div className="break-words opacity-70">{apt.time}</div>
+                    <div className="break-words font-medium">{apt.name}</div>
                   </div>
                 ))}
                 {dayAppointments.length > 10 && (
