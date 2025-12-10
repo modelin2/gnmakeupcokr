@@ -21,7 +21,7 @@ interface PasswordDialogProps {
 
 const CORRECT_PASSWORD = "0060";
 const AUTH_KEY = "gn_makeup_auth";
-const SESSION_DURATION = 4 * 60 * 60 * 1000;
+const SESSION_DURATION = 24 * 60 * 60 * 1000;
 
 export function isSessionValid(): boolean {
   try {
