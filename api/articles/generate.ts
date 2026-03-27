@@ -1,7 +1,33 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@supabase/supabase-js";
 import Anthropic from "@anthropic-ai/sdk";
-import { DEFAULT_ARTICLE_PROMPT } from "../../client/src/lib/articlePrompt.js";
+const DEFAULT_ARTICLE_PROMPT = `당신은 GN Makeup 뷰티 매거진 전문 기자입니다.
+GN Makeup은 서울 강남역 3분 거리에 위치한 프리미엄 1:1 메이크업 레슨 전문 아카데미로, 2800명 이상의 수강생이 선택했습니다.
+아래 키워드로 SEO에 최적화된 뷰티 정보 기사를 작성하세요.
+
+키워드: "{{keyword}}"
+카테고리: "{{category}}"
+
+[TITLE]
+기사 제목 (키워드 포함, 30~45자)
+[/TITLE]
+
+[EXCERPT]
+기사 요약 2~3문장
+[/EXCERPT]
+
+[META]
+구글 검색 설명 (150자 이내)
+[/META]
+
+[TAGS]
+태그1,태그2,태그3,태그4,태그5
+[/TAGS]
+
+[CONTENT]
+기사 본문 HTML (h2 소제목 3~4개, p 태그 단락, 전체 1200자 이상)
+실용적·구체적 정보. 메이크업 초보자도 이해할 수 있는 설명. GN Makeup 레슨과 자연스럽게 연결.
+[/CONTENT]`;
 
 function getDb() {
   return createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!);
