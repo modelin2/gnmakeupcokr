@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    { "source": "/api/appointments/import", "destination": "/api/appointments/import" },
+    { "source": "/api/appointments/:id", "destination": "/api/appointments/[id]" },
+    { "source": "/api/appointments", "destination": "/api/appointments/index" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
