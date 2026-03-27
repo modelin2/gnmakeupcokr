@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /blog
+Allow: /blog/
+
+Disallow: /schedule
+Disallow: /schedule/
+
+Sitemap: https://gnmakeup.com/sitemap.xml

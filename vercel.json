@@ -1,10 +1,22 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
+  "crons": [
+    {
+      "path": "/api/cron/generate",
+      "schedule": "0 1 * * *"
+    }
+  ],
   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/api/appointments/import", "destination": "/api/appointments/import" },
     { "source": "/api/appointments/:id", "destination": "/api/appointments/[id]" },
     { "source": "/api/appointments", "destination": "/api/appointments/index" },
+    { "source": "/api/articles/generate", "destination": "/api/articles/generate" },
+    { "source": "/api/articles/:slug", "destination": "/api/articles/[slug]" },
+    { "source": "/api/articles", "destination": "/api/articles/index" },
+    { "source": "/api/cron/generate", "destination": "/api/cron/generate" },
+    { "source": "/api/sitemap", "destination": "/api/sitemap" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
