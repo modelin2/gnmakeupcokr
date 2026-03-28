@@ -1,12 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
-  "crons": [
-    {
-      "path": "/api/cron/generate",
-      "schedule": "0 1 * * *"
-    }
-  ],
+  "crons": [],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
     { "source": "/api/appointments/import", "destination": "/api/appointments/import" },
@@ -16,6 +11,9 @@
     { "source": "/api/articles/:slug", "destination": "/api/articles/[slug]" },
     { "source": "/api/articles", "destination": "/api/articles/index" },
     { "source": "/api/cron/generate", "destination": "/api/cron/generate" },
+    { "source": "/api/cron/collect-keywords", "destination": "/api/cron/collect-keywords" },
+    { "source": "/api/keyword-collect", "destination": "/api/keyword-collect" },
+    { "source": "/api/keyword-queue", "destination": "/api/keyword-queue" },
     { "source": "/api/sitemap", "destination": "/api/sitemap" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
