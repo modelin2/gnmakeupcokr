@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 const RC_API: string = (import.meta.env.VITE_RC_API as string | undefined) ?? "https://www.recordingcafe.com";
 
 const GROUP = { name: "메이크업 모임", price: 243_000, monthly: 81_000, months: 3, sessions: 4, capacity: 6, intervalDays: 21 };
-const PRIVATE = { name: "1:1 레슨", price: 700_000, sessions: 4 };
+const PRIVATE = { name: "1:1 레슨", price: 600_000, sessions: 4 };
 export const REFUND_NOTICE = "첫 모임·레슨이 시작되기 전까지는 환불할 수 있고, 시작한 뒤에는 환불이 되지 않습니다.";
 
 type Cohort = { key: string; state: "open" | "full" | "started" | "waiting"; name: string; timeLabel: string; sessions: string[]; seatsLeft: number | null };
