@@ -407,14 +407,14 @@ export default function MainPage() {
               <AccordionTrigger className="text-left">
                 <div className="flex items-center gap-3">
                   <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                  <span>한 번 레슨으로 충분한가요?</span>
+                  <span>메이크업 모임에서는 어느 정도 교육하나요?</span>
                 </div>
               </AccordionTrigger>
               <AccordionContent className="pl-8">
                 <p className="text-muted-foreground leading-relaxed">
-                  원데이 클래스만으로도 <span className="text-foreground font-medium">데일리 메이크업의 기본기</span>를 
-                  충분히 익히실 수 있습니다. 더 심화된 내용을 원하시면 추가 레슨도 가능해요. 
-                  상담 시 개인 목표에 맞는 과정을 추천해 드립니다.
+                  기본적으로 <span className="text-foreground font-medium">평소 하시던 화장을 직접 하시는 모습을 보면서</span>{" "}
+                  <span className="text-foreground font-medium">원포인트로 첨삭 지도</span>를 해드리는 방식입니다. 처음부터 새로 배우기보다
+                  내 화장에서 가장 효과가 큰 한 가지를 짚어 고치는 데 집중합니다.
                 </p>
               </AccordionContent>
             </AccordionItem>
