@@ -1,3 +1,4 @@
+import MeetupApply from "@/components/MeetupApply";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -112,7 +113,6 @@ export default function MainPage() {
                 1:1 레슨 상담 및 예약하기
               </Button>
             </a>
-            <span className="text-xs text-muted-foreground">네이버 예약에서 일반 메이크업으로 예약 후 비고에 "레슨"이라고 적어주세요</span>
           </div>
 
           <div className="block">
@@ -518,20 +518,22 @@ export default function MainPage() {
             지금 바로<br />
             <span className="font-medium">'곰손 탈출'</span>을 시작하세요!
           </h3>
-          <p className="text-muted-foreground mb-8">
-            아래 버튼을 눌러 상담을 신청해 보세요.
+          <p className="text-muted-foreground mb-10">
+            아래에서 메이크업 모임 또는 1:1 레슨을 바로 신청해 보세요.
           </p>
-          <div className="flex flex-col items-center gap-3">
+        </div>
+        <div id="apply" className="relative z-10 container mx-auto max-w-5xl text-left">
+          <MeetupApply returnPath="/" />
+          <div className="text-center mt-8">
             <a
               href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
               target="_blank"
               rel="noopener noreferrer"
+              className="text-sm text-muted-foreground underline underline-offset-4"
+              data-testid="button-cta-booking"
             >
-              <Button size="lg" className="px-10" data-testid="button-cta-booking">
-                1:1 레슨 상담 및 예약하기
-              </Button>
+              레슨 1회만 먼저 상담·예약하고 싶다면 (네이버 예약)
             </a>
-            <span className="text-xs text-muted-foreground">네이버 예약에서 일반 메이크업으로 예약 후 비고에 "레슨"이라고 적어주세요</span>
           </div>
         </div>
       </section>

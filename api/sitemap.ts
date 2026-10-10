@@ -16,7 +16,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const staticPages = [
     { url: "/", priority: "1.0", changefreq: "weekly" },
     { url: "/blog", priority: "0.9", changefreq: "daily" },
-    { url: "/meetup", priority: "0.8", changefreq: "weekly" },
   ];
 
   const articleUrls = (articles ?? []).map((a) => ({
