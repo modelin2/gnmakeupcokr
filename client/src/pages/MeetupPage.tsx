@@ -14,16 +14,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const RC_API: string = (import.meta.env.VITE_RC_API as string | undefined) ?? "https://www.recordingcafe.com";
 
 const NAVER_BOOKING = "https://booking.naver.com/booking/13/bizes/522555/items/3912107";
-const NAVER_REVIEWS = "https://booking.naver.com/review/bizes/522555";
+const NAVER_PLACE = "https://map.naver.com/p/entry/place/21423491"; // 네이버 지도 플레이스(지엔 메이크업)
+const NAVER_RATING = { score: "4.88", reviews: 204, asOf: "2026.10.10" }; // 네이버 지도 방문자 리뷰 기준 — 확인일 기준 값
 const PLACE = "서울 강남구 역삼동 822-7 목화밀라트 1810호 (강남역 3분)";
 
 const GROUP = { name: "메이크업 모임", price: 243_000, monthly: 81_000, months: 3, sessions: 4, capacity: 6, intervalDays: 21 };
 const PRIVATE = { name: "1:1 레슨", price: 700_000, sessions: 4 };
 const REFUND_NOTICE = "첫 모임·레슨이 시작되기 전까지는 환불할 수 있고, 시작한 뒤에는 환불이 되지 않습니다.";
-
-// 네이버 지도 전수조사 결과(조사 방식·기준일·순위). 조사가 끝나 수치가 확정되기 전에는 null — null이면 "1위" 문구를 화면에 내지 않는다.
-type RankStudy = { rank: number; total: number; basis: string; date: string; source: string; method: string };
-const RANK_STUDY: RankStudy | null = null;
 
 type Cohort = { key: string; state: "open" | "full" | "started" | "waiting"; name: string; timeLabel: string; sessions: string[]; seatsLeft: number | null };
 type Product = "group" | "private";
@@ -236,11 +233,10 @@ export default function MeetupPage() {
       {/* 히어로 — 짧게 */}
       <section className="min-h-[80vh] flex items-center justify-center pt-16 px-4 bg-gradient-to-b from-muted/50 to-background">
         <div className="text-center max-w-3xl mx-auto">
-          <a href={NAVER_REVIEWS} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-8" data-testid="link-rating">
+          <a href={NAVER_PLACE} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-8" data-testid="link-rating">
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span className="text-sm font-medium">네이버 평점 4.81</span>
-            <span className="text-xs text-muted-foreground">리뷰 176</span>
-            {RANK_STUDY && <span className="text-sm font-semibold text-primary">· 서울 메이크업샵 {RANK_STUDY.rank}위</span>}
+            <span className="text-sm font-medium">네이버 평점 {NAVER_RATING.score}</span>
+            <span className="text-xs text-muted-foreground">방문자 리뷰 {NAVER_RATING.reviews}</span>
           </a>
           <h1 className="text-4xl md:text-6xl font-light leading-tight mb-6 break-keep" data-testid="text-hero-title">
             강남 <span className="font-semibold">실전 메이크업</span>을<br />그대로
@@ -278,16 +274,11 @@ export default function MeetupPage() {
             GN Makeup은 면접·맞선 같은 실제 일정을 앞둔 분들의 메이크업을 매일 합니다. 현장에서 결과를 내는 방식 그대로, 내 얼굴에 맞게 알려드립니다.
           </p>
           <div className="grid grid-cols-3 gap-4 max-w-xl mx-auto">
-            <div><p className="text-3xl font-light">4.81</p><p className="text-xs text-muted-foreground">네이버 평점</p></div>
-            <div><p className="text-3xl font-light">176</p><p className="text-xs text-muted-foreground">네이버 리뷰</p></div>
+            <div><p className="text-3xl font-light">{NAVER_RATING.score}</p><p className="text-xs text-muted-foreground">네이버 평점</p></div>
+            <div><p className="text-3xl font-light">{NAVER_RATING.reviews}</p><p className="text-xs text-muted-foreground">방문자 리뷰</p></div>
             <div><p className="text-3xl font-light">150+</p><p className="text-xs text-muted-foreground">면접 메이크업 사례</p></div>
           </div>
-          {RANK_STUDY && (
-            <div className="mt-10 text-left rounded-lg border bg-card/50 p-5 text-sm leading-relaxed" data-testid="rank-study">
-              <p className="font-medium mb-2">네이버 지도 평점 조사 — 서울 메이크업샵 {RANK_STUDY.total}곳 중 {RANK_STUDY.rank}위</p>
-              <p className="text-muted-foreground">기준: {RANK_STUDY.basis}<br />조사일: {RANK_STUDY.date}<br />출처: {RANK_STUDY.source}<br />방법: {RANK_STUDY.method}</p>
-            </div>
-          )}
+          <p className="mt-4 text-[11px] text-muted-foreground">네이버 지도 방문자 리뷰 기준, {NAVER_RATING.asOf} 확인</p>
         </div>
       </section>
 
