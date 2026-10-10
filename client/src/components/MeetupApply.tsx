@@ -257,7 +257,7 @@ export default function MeetupApply({ returnPath }: { returnPath: string }) {
             <div className="flex items-start gap-2">
               <Checkbox id="mp-agree" checked={agree} onCheckedChange={(v) => setAgree(v === true)} className="mt-0.5" />
               <Label htmlFor="mp-agree" className="text-xs font-normal leading-relaxed text-muted-foreground break-keep">
-                {REFUND_NOTICE} 신청·결제를 위한 개인정보(이름·연락처·이메일) 수집·이용에 동의합니다. 결제는 레코딩카페를 통해 처리되며 카드 명세서에 "레코딩카페"로 표기됩니다.
+                신청·결제를 위한 개인정보(이름·연락처·이메일) 수집·이용에 동의합니다.
               </Label>
             </div>
             {error && <p className="text-sm text-destructive break-keep" role="alert">{error}</p>}
