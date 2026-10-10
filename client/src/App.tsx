@@ -8,6 +8,7 @@ import MainPage from "@/pages/MainPage";
 import CalendarPage from "@/pages/CalendarPage";
 import BlogPage from "@/pages/BlogPage";
 import BlogPostPage from "@/pages/BlogPostPage";
+import MeetupPage from "@/pages/MeetupPage";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/schedule" component={CalendarPage} />
       <Route path="/blog" component={BlogPage} />
       <Route path="/blog/:slug" component={BlogPostPage} />
+      <Route path="/meetup" component={MeetupPage} />
       <Route component={NotFound} />
     </Switch>
   );
