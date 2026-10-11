@@ -98,8 +98,8 @@ export default function MainPage() {
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span className="text-foreground text-sm font-medium">네이버 평점 4.81 / 5.0</span>
-            <span className="text-muted-foreground text-xs">(176명 리뷰)</span>
+            <span className="text-foreground text-sm font-medium">네이버 평점 4.88 / 5.0</span>
+            <span className="text-muted-foreground text-xs">(204명 리뷰)</span>
           </div>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight text-foreground" data-testid="text-hero-title">
@@ -164,8 +164,8 @@ export default function MainPage() {
                   <Star key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="text-3xl md:text-4xl font-light mb-1">4.81</p>
-              <p className="text-sm text-muted-foreground">176명 평점</p>
+              <p className="text-3xl md:text-4xl font-light mb-1">4.88</p>
+              <p className="text-sm text-muted-foreground">204명 평점</p>
             </div>
             <div className="hidden md:block w-px h-16 bg-border" />
             <div className="text-center" data-testid="stat-interview">
@@ -199,7 +199,7 @@ export default function MainPage() {
                 <span className="font-medium">프로 메이크업 아티스트</span>
               </h3>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                176명으로부터 4.81 평점을 받은 유일한 메이크업샵.
+                204명으로부터 4.88 평점을 받은 유일한 메이크업샵.
                 GN Makeup에서 나만의 메이크업 스타일을 찾아보세요.
               </p>
               <div className="space-y-4">
@@ -331,8 +331,8 @@ export default function MainPage() {
                   <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="text-lg font-medium">4.81</span>
-              <span className="text-muted-foreground text-sm">(176명)</span>
+              <span className="text-lg font-medium">4.88</span>
+              <span className="text-muted-foreground text-sm">(204명)</span>
             </div>
           </div>
 
@@ -377,7 +377,7 @@ export default function MainPage() {
               rel="noopener noreferrer"
             >
               <Button variant="outline" size="lg" data-testid="button-more-reviews">
-                네이버에서 176개 후기 더보기
+                네이버에서 204개 후기 더보기
                 <ExternalLink className="w-4 h-4 ml-2" />
               </Button>
             </a>
@@ -627,7 +627,7 @@ export default function MainPage() {
                 {[1, 2, 3, 4, 5].map((i) => (
                   <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
                 ))}
-                <span className="text-xs text-muted-foreground ml-1">4.81 (176)</span>
+                <span className="text-xs text-muted-foreground ml-1">4.88 (204)</span>
               </div>
             </div>
             <div className="text-center md:text-left">
