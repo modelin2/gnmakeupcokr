@@ -184,7 +184,6 @@ export default function MeetupApply({ returnPath }: { returnPath: string }) {
             결제 후 담당자가 연락드려 레슨 일정을 함께 조율합니다.
           </p>
         )}
-        <p className="text-xs text-muted-foreground">카드 명세서에는 "레코딩카페"로 표기됩니다.</p>
       </div>
     );
   }

@@ -496,7 +496,7 @@ export default function MainPage() {
               </AccordionTrigger>
               <AccordionContent className="pl-8">
                 <p className="text-muted-foreground leading-relaxed break-keep">
-                  신청서를 작성하면 카드결제창이 열립니다. 결제는 레코딩카페를 통해 처리되어 카드 명세서에는 "레코딩카페"로 표기됩니다.
+                  신청서를 작성하면 카드결제창이 열립니다.
                 </p>
               </AccordionContent>
             </AccordionItem>
