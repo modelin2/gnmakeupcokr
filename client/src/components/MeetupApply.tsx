@@ -231,7 +231,7 @@ export default function MeetupApply({ returnPath }: { returnPath: string }) {
                 <p className="text-xs text-muted-foreground mb-6">{PRIVATE.sessions}회 패키지</p>
                 <p className="text-sm text-muted-foreground mb-6 break-keep">결제하신 뒤 담당자가 연락드려 날짜와 시간을 함께 정합니다.</p>
                 <div className="mt-auto">
-                  <Button className="w-full" size="lg" variant="outline" onClick={() => openApply("private")} data-testid="button-apply-private">1:1 레슨 신청</Button>
+                  <Button className="w-full" size="lg" onClick={() => openApply("private")} data-testid="button-apply-private">1:1 레슨 신청</Button>
                 </div>
               </CardContent>
             </Card>
