@@ -1,4 +1,4 @@
-import MeetupApply from "@/components/MeetupApply";
+import MeetupApply, { REFUND_NOTICE } from "@/components/MeetupApply";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -16,7 +16,10 @@ import {
   Timer,
   Briefcase,
   Car,
-  Footprints
+  Footprints,
+  Heart,
+  UserCheck,
+  Camera
 } from "lucide-react";
 import {
   Accordion,
@@ -27,6 +30,13 @@ import {
 
 import heroImage2 from "@assets/지엔메이크업2_1765022120174.png";
 import parkingGuideImage from "@assets/1765190616532_1765191268222.png";
+
+const USE_CASES = [
+  { icon: Briefcase, title: "면접·이직", desc: "단정하고 일 잘할 것 같은 첫인상" },
+  { icon: Heart, title: "맞선·소개팅", desc: "호감이 먼저 가는 얼굴 설계" },
+  { icon: UserCheck, title: "영업·서비스직", desc: "처음 보는 사람에게 믿음 주는 인상" },
+  { icon: Camera, title: "프로필·촬영", desc: "카메라 앞에서도 덜 피곤해 보이는 베이스" },
+];
 
 export default function MainPage() {
   const scrollToSection = (id: string) => {
@@ -211,6 +221,36 @@ export default function MainPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="moments" className="py-20 md:py-28 px-4 bg-muted/30">
+        <div className="container mx-auto max-w-5xl">
+          <h3 className="text-2xl md:text-3xl font-light text-center mb-10 break-keep" data-testid="text-moments-title">
+            결과가 나와야 하는 <span className="font-medium">순간</span>을 위한 메이크업
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {USE_CASES.map((u) => (
+              <Card key={u.title}>
+                <CardContent className="p-5 text-center">
+                  <u.icon className="w-7 h-7 mx-auto mb-3 text-primary/80" />
+                  <p className="font-medium mb-1">{u.title}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed break-keep">{u.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="field" className="py-20 md:py-28 px-4">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h3 className="text-2xl md:text-3xl font-light mb-6 break-keep" data-testid="text-field-title">
+            레슨 학원이 아닌, <span className="font-medium">매일 현장에서 하는 사람</span>
+          </h3>
+          <p className="text-muted-foreground leading-relaxed break-keep">
+            GN Makeup은 면접·맞선 같은 실제 일정을 앞둔 분들의 메이크업을 매일 합니다. 현장에서 결과를 내는 방식 그대로, 내 얼굴에 맞게 알려드립니다.
+          </p>
         </div>
       </section>
 
@@ -415,6 +455,48 @@ export default function MainPage() {
                   기본적으로 <span className="text-foreground font-medium">평소 하시던 화장을 직접 하시는 모습을 보면서</span>{" "}
                   <span className="text-foreground font-medium">원포인트로 첨삭 지도</span>를 해드리는 방식입니다. 처음부터 새로 배우기보다
                   내 화장에서 가장 효과가 큰 한 가지를 짚어 고치는 데 집중합니다.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-5" data-testid="faq-item-5">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>메이크업 모임과 1:1 레슨 중 무엇이 맞을까요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed break-keep">
+                  현업 노하우를 여러 명과 함께 합리적으로 배우고 싶다면 메이크업 모임, 면접·맞선 등 내 일정과 내 얼굴에 맞춰 집중하고 싶다면 1:1 레슨을 권합니다. 두 가지 중 하나를 선택해 신청합니다.
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-6" data-testid="faq-item-6">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>환불이 가능한가요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed break-keep">
+                  {REFUND_NOTICE}
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="item-7" data-testid="faq-item-7">
+              <AccordionTrigger className="text-left">
+                <div className="flex items-center gap-3">
+                  <HelpCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span>결제는 어떻게 하나요?</span>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="pl-8">
+                <p className="text-muted-foreground leading-relaxed break-keep">
+                  신청서를 작성하면 카드결제창이 열립니다. 결제는 레코딩카페를 통해 처리되어 카드 명세서에는 "레코딩카페"로 표기됩니다.
                 </p>
               </AccordionContent>
             </AccordionItem>

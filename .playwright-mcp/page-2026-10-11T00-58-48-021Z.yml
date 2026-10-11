@@ -1,0 +1,186 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "GN Makeup" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e8]:
+          - link [ref=e9] [cursor=pointer]:
+            - /url: https://gnmakeup.com
+            - button "샵" [ref=e10]
+          - link [ref=e11] [cursor=pointer]:
+            - /url: https://booking.naver.com/booking/13/bizes/522555/items/3912107
+            - button "예약하기" [ref=e12]
+          - link [ref=e13] [cursor=pointer]:
+            - /url: https://booking.naver.com/review/bizes/522555
+            - button "후기" [ref=e14]
+          - link [ref=e15] [cursor=pointer]:
+            - /url: /schedule
+            - button "스케줄" [ref=e16]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e22]: 네이버 평점 4.81 / 5.0
+        - generic [ref=e23]: (176명 리뷰)
+      - heading "화알못도 금손이 되는 시간" [level=2] [ref=e24]
+      - paragraph [ref=e25]: 1:1 메이크업 원데이 클래스
+      - paragraph [ref=e26]: 유튜브 뷰티 영상을 봐도 내 얼굴엔 안 어울리나요?나만의 얼굴 골격과 피부 톤에 맞춘 맞춤형 레슨을 경험하세요.
+      - link [ref=e28] [cursor=pointer]:
+        - /url: https://booking.naver.com/booking/13/bizes/522555/items/3912107
+        - button "1:1 레슨 상담 및 예약하기" [ref=e29]
+      - button "스크롤" [ref=e31] [cursor=pointer]
+    - generic [ref=e35]:
+      - heading "\"유튜브 뷰티 영상을 봐도 내 얼굴엔 안 어울리나요?\"" [level=3] [ref=e36]: "\"유튜브 뷰티 영상을 봐도내 얼굴엔 안 어울리나요?\""
+      - paragraph [ref=e37]: 매일 아침, 어색한 눈썹과 둥둥 뜨는 파운데이션 때문에 고민이신가요?초보자 메이크업 레슨 전문 GN Makeup에서는 남들의 화장법이 아닌, 오직 당신만의 얼굴 골격과 피부 톤에 맞춘 솔루션을 제공합니다.
+      - paragraph [ref=e38]: 획일적인 학원식 강의가 아닌,실생활에서 바로 적용 가능한 데일리 메이크업 코칭을 경험해보세요.
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - paragraph [ref=e54]: "4.81"
+        - paragraph [ref=e55]: 176명 평점
+      - generic [ref=e57]:
+        - paragraph [ref=e61]: 150+
+        - paragraph [ref=e62]: 면접 성공 사례
+      - generic [ref=e64]:
+        - paragraph [ref=e68]: 3분
+        - paragraph [ref=e69]: 강남역 거리
+      - generic [ref=e71]:
+        - paragraph [ref=e74]: 1:1
+        - paragraph [ref=e75]: 맞춤 수업
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - paragraph [ref=e80]: Why Choose Us
+        - heading "20년 경력의 프로 메이크업 아티스트" [level=3] [ref=e81]: 20년 경력의프로 메이크업 아티스트
+        - paragraph [ref=e82]: 176명으로부터 4.81 평점을 받은 유일한 메이크업샵. GN Makeup에서 나만의 메이크업 스타일을 찾아보세요.
+        - generic [ref=e83]: 150건 이상의 면접 메이크업 성공 사례
+      - generic:
+        - generic:
+          - img "150+ Interview Success Stories"
+    - generic [ref=e91]:
+      - generic [ref=e92]:
+        - paragraph [ref=e93]: Curriculum
+        - heading "곰손도 할 수 있는 커리큘럼" [level=3] [ref=e94]
+      - generic [ref=e95]:
+        - generic [ref=e98]:
+          - heading "내 파우치 심폐소생술" [level=4] [ref=e106]
+          - paragraph [ref=e107]: (파우치 점검)
+          - paragraph [ref=e108]: 새로운 화장품을 살 필요가 없습니다. 여러분이 가지고 있는 제품을 활용해 최적의 조합을 찾아드립니다.
+          - paragraph [ref=e109]: 화알못 화장법의 시작은 내가 가진 도구를 제대로 쓰는 것!
+        - generic [ref=e112]:
+          - heading "곰손도 할 수 있는 아이 메이크업" [level=4] [ref=e117]
+          - paragraph [ref=e118]: (눈화장 공식)
+          - paragraph [ref=e119]: 번지고 지워지는 눈화장은 이제 그만. 무쌍, 속쌍, 유쌍 눈화장 배우기 과정을 통해 내 눈매를 가장 또렷하게!
+          - paragraph [ref=e120]: 어려운 그라데이션도 손쉽게 하는 노하우 전수
+        - generic [ref=e123]:
+          - heading "직장인을 위한 10분 퀵 메이크업" [level=4] [ref=e128]
+          - paragraph [ref=e129]: (출근 화장)
+          - paragraph [ref=e130]: 바쁜 아침, 시간은 줄이고 완성도는 높이는 직장인 출근 화장 스킬을 배웁니다.
+          - paragraph [ref=e131]: 베이스 지속력 UP + 생기있는 최소 터치
+    - generic [ref=e133]:
+      - generic [ref=e134]:
+        - paragraph [ref=e135]: Reviews
+        - heading "수강생 리얼 후기" [level=3] [ref=e136]
+        - generic [ref=e137]:
+          - generic [ref=e149]: "4.81"
+          - generic [ref=e150]: (176명)
+      - generic [ref=e151]:
+        - generic [ref=e153]:
+          - generic [ref=e154]: "\""
+          - paragraph [ref=e155]: 유튜브만 보다가 직접 1:1 메이크업 강좌를 들으니 브러쉬 잡는 법부터 달랐어요. 이제 출근 준비 시간이 반으로 줄었습니다!
+          - paragraph [ref=e167]: 30대 직장인 김OO님
+        - generic [ref=e169]:
+          - generic [ref=e170]: "\""
+          - paragraph [ref=e171]: 똥손이라 걱정했는데, 제 눈에 맞는 아이라인 그리는 법을 배우고 자신감이 생겼어요. 나에게 맞는 화장법 찾기를 원하신다면 강력 추천합니다.
+          - paragraph [ref=e183]: 20대 대학생 이OO님
+      - link [ref=e185] [cursor=pointer]:
+        - /url: https://booking.naver.com/review/bizes/522555
+        - button "네이버에서 176개 후기 더보기" [ref=e186]
+    - generic [ref=e188]:
+      - generic [ref=e189]:
+        - paragraph [ref=e190]: FAQ
+        - heading "자주 묻는 질문" [level=3] [ref=e191]
+      - generic [ref=e192]:
+        - heading [level=3] [ref=e194]:
+          - button "메이크업을 한 번도 안 해본 완전 초보도 가능한가요?" [ref=e195] [cursor=pointer]
+        - heading [level=3] [ref=e204]:
+          - button "준비물이 따로 필요한가요?" [ref=e205] [cursor=pointer]
+        - heading [level=3] [ref=e214]:
+          - button "레슨 시간은 얼마나 걸리나요?" [ref=e215] [cursor=pointer]
+        - heading [level=3] [ref=e224]:
+          - button "메이크업 모임에서는 어느 정도 교육하나요?" [ref=e225] [cursor=pointer]
+    - generic [ref=e234]:
+      - generic [ref=e235]:
+        - paragraph [ref=e236]: Location
+        - heading "오시는 길" [level=3] [ref=e237]
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e247]:
+            - paragraph [ref=e248]: 주소
+            - paragraph [ref=e249]: 서울 강남구 역삼동 822-7 목화밀라트 1810호
+          - generic [ref=e255]:
+            - paragraph [ref=e256]: 운영시간
+            - paragraph [ref=e257]: 오전 10시 - 오후 8시 (예약제)
+          - generic [ref=e263]:
+            - paragraph [ref=e264]: 도보 안내
+            - paragraph [ref=e265]: 12번 출구로 나와서 직진, 다이소 올리브영 지나 바나나프레소 건물 18층 (목화밀라트)
+          - generic [ref=e272]:
+            - paragraph [ref=e273]: 주차 안내
+            - generic [ref=e274]:
+              - paragraph [ref=e275]: "자체 주차장: 1시간 6,000원 (기계식, 주차비 지원 없음)"
+              - paragraph [ref=e276]: "공영 주차장: 1시간 3,600원 (도보 2분)"
+        - generic [ref=e277]:
+          - generic:
+            - img "역삼문화공원 제1호 주차장 출구"
+          - generic [ref=e278]:
+            - paragraph [ref=e279]: 공영주차장 이용 안내
+            - generic [ref=e280]:
+              - paragraph [ref=e281]: 1. 주차장 맨 위(1층)에 자그만한 공원이 위치해 있어요!
+              - paragraph [ref=e282]: 2. 주차 후 B2층으로 오셔서 출입문으로 나오신 후 화살표를 따라 가시면 강남역 방향이에요!
+              - paragraph [ref=e283]: 3. 쭉 내려오시면 작은 사거리(오른쪽 김가네김밥)에서 좌회전(도로쪽으로) 해서 내려오세요.
+              - paragraph [ref=e284]: 4. 도로다와서 오른쪽 기둥 있는 건물 (도원참치 바나나프레소 건물) 목화밀라트 18층
+              - paragraph [ref=e285]: "* 주차장에서 저희 건물까지 도보 2분 거리"
+    - generic [ref=e286]:
+      - generic [ref=e291]:
+        - heading "지금 바로 '곰손 탈출'을 시작하세요!" [level=3] [ref=e292]: 지금 바로'곰손 탈출'을 시작하세요!
+        - paragraph [ref=e293]: 아래에서 메이크업 모임 또는 1:1 레슨을 바로 신청해 보세요.
+      - generic [ref=e294]:
+        - generic [ref=e295]:
+          - generic [ref=e297]:
+            - heading "메이크업 모임" [level=3] [ref=e303]
+            - paragraph [ref=e304]: 3주 간격 4회 · 반당 6명
+            - paragraph [ref=e305]: 243,000원
+            - paragraph [ref=e306]: 3개월 · 월 81,000원
+            - paragraph [ref=e307]: 모집 현황을 불러오는 중…
+            - generic [ref=e309]:
+              - textbox "이름" [ref=e310]
+              - textbox "연락처" [ref=e311]
+              - button "다음 모임 알림 받기" [ref=e312] [cursor=pointer]
+          - generic [ref=e314]:
+            - heading "1:1 레슨" [level=3] [ref=e318]
+            - paragraph [ref=e319]: 4회 · 내 얼굴·내 일정에 맞춘 레슨
+            - paragraph [ref=e320]: 600,000원
+            - paragraph [ref=e321]: 4회 패키지
+            - paragraph [ref=e322]: 결제하신 뒤 담당자가 연락드려 날짜와 시간을 함께 정합니다.
+            - button "1:1 레슨 신청" [ref=e324] [cursor=pointer]
+        - paragraph [ref=e325]: 첫 모임·레슨이 시작되기 전까지는 환불할 수 있고, 시작한 뒤에는 환불이 되지 않습니다.
+    - contentinfo [ref=e326]:
+      - generic [ref=e327]:
+        - generic [ref=e328]: GN Makeup
+        - generic [ref=e330]:
+          - generic [ref=e331]:
+            - heading "GN Makeup" [level=4] [ref=e332]
+            - paragraph [ref=e333]: 화알못도 금손이 되는1:1 맞춤 메이크업 클래스
+            - generic [ref=e334]: 4.81 (176)
+          - generic [ref=e346]:
+            - heading "커리큘럼" [level=4] [ref=e347]
+            - list [ref=e348]:
+              - listitem [ref=e349]: 파우치 점검 (내 화장품 활용)
+              - listitem [ref=e350]: 아이 메이크업 (눈화장 공식)
+              - listitem [ref=e351]: 10분 퀵 메이크업 (출근 화장)
+          - generic [ref=e352]:
+            - heading "연락처" [level=4] [ref=e353]
+            - generic [ref=e354]:
+              - link "네이버 예약" [ref=e355] [cursor=pointer]:
+                - /url: https://booking.naver.com/booking/13/bizes/522555/items/3912107
+              - paragraph [ref=e360]: 강남역 12번 출구 도보 3분
+        - paragraph [ref=e362]: © 2025 GN Makeup. All rights reserved.

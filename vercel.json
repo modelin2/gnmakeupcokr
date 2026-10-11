@@ -15,7 +15,6 @@
     { "source": "/api/keyword-collect", "destination": "/api/keyword-collect" },
     { "source": "/api/keyword-queue", "destination": "/api/keyword-queue" },
     { "source": "/api/sitemap", "destination": "/api/sitemap" },
-    { "source": "/meetup", "destination": "/meetup.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
