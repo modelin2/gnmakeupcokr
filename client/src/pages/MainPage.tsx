@@ -524,17 +524,6 @@ export default function MainPage() {
         </div>
         <div id="apply" className="relative z-10 container mx-auto max-w-5xl text-left">
           <MeetupApply returnPath="/" />
-          <div className="text-center mt-8">
-            <a
-              href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground underline underline-offset-4"
-              data-testid="button-cta-booking"
-            >
-              레슨 1회만 먼저 상담·예약하고 싶다면 (네이버 예약)
-            </a>
-          </div>
         </div>
       </section>
 

@@ -8,7 +8,6 @@ import MeetupApply, { REFUND_NOTICE, readSource } from "@/components/MeetupApply
 
 // /meetup — 강남 실전 메이크업 레슨(메이크업 모임 · 1:1 레슨 택1). 신청·결제 영역은 components/MeetupApply (레코딩카페 API 호출).
 
-const NAVER_BOOKING = "https://booking.naver.com/booking/13/bizes/522555/items/3912107";
 const NAVER_PLACE = "https://map.naver.com/p/entry/place/21423491"; // 네이버 지도 플레이스(지엔 메이크업)
 const NAVER_RATING = { score: "4.88", reviews: 204, asOf: "2026.10.10" }; // 네이버 지도 방문자 리뷰 기준 — 확인일 기준 값
 const PLACE = "서울 강남구 역삼동 822-7 목화밀라트 1810호 (강남역 3분)";
@@ -120,9 +119,6 @@ export default function MeetupPage() {
             <AccordionItem value="d"><AccordionTrigger>결제는 어떻게 하나요?</AccordionTrigger>
               <AccordionContent className="break-keep">신청서를 작성하면 카드결제창이 열립니다. 결제는 레코딩카페를 통해 처리되어 카드 명세서에는 "레코딩카페"로 표기됩니다.</AccordionContent></AccordionItem>
           </Accordion>
-          <div className="text-center mt-10">
-            <a href={NAVER_BOOKING} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground underline underline-offset-4">레슨 1회만 먼저 상담·예약하고 싶다면 (네이버 예약)</a>
-          </div>
         </div>
       </section>
 
