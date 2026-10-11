@@ -94,46 +94,20 @@ export default function MainPage() {
         </div>
       </header>
 
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-16 overflow-hidden bg-gradient-to-b from-muted/50 to-background">
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-6">
+      <section className="relative min-h-[80vh] flex items-center justify-center pt-16 overflow-hidden bg-gradient-to-b from-muted/50 to-background">
+        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+          <a href="https://map.naver.com/p/entry/place/21423491" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-8" data-testid="link-rating">
             <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-            <span className="text-foreground text-sm font-medium">네이버 평점 4.88 / 5.0</span>
-            <span className="text-muted-foreground text-xs">(204명 리뷰)</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 leading-tight text-foreground" data-testid="text-hero-title">
-            화알못도 <span className="font-semibold">금손</span>이 되는 시간
+            <span className="text-sm font-medium">네이버 평점 4.88</span>
+            <span className="text-xs text-muted-foreground">방문자 리뷰 204</span>
+          </a>
+          <h2 className="text-4xl md:text-6xl font-light leading-tight mb-6 break-keep" data-testid="text-hero-title">
+            강남 <span className="font-semibold">실전 메이크업</span>을<br />그대로
           </h2>
-          <p className="text-lg md:text-xl text-foreground/90 mb-4 font-light" data-testid="text-hero-description">
-            1:1 메이크업 원데이 클래스
-          </p>
-          <p className="text-base text-muted-foreground mb-10 max-w-xl mx-auto">
-            유튜브 뷰티 영상을 봐도 내 얼굴엔 안 어울리나요?<br />
-            나만의 얼굴 골격과 피부 톤에 맞춘 맞춤형 레슨을 경험하세요.
-          </p>
-          
-          <div className="flex flex-col items-center gap-3 mb-12">
-            <a
-              href="https://booking.naver.com/booking/13/bizes/522555/items/3912107"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" className="px-8" data-testid="button-hero-booking">
-                1:1 레슨 상담 및 예약하기
-              </Button>
-            </a>
-          </div>
-
-          <div className="block">
-            <button 
-              onClick={() => scrollToSection('intro')}
-              className="animate-bounce text-muted-foreground"
-              aria-label="스크롤"
-            >
-              <ChevronDown className="w-6 h-6" />
-            </button>
-          </div>
+          <p className="text-base md:text-lg text-muted-foreground mb-10 break-keep" data-testid="text-hero-description">면접·맞선처럼 결과가 나와야 하는 메이크업, 현업의 방식 그대로.</p>
+          <Button size="lg" className="px-8" onClick={() => scrollToSection('apply')} data-testid="button-hero-apply">
+            메이크업 모임 · 1:1 레슨 보기
+          </Button>
         </div>
       </section>
 
